@@ -335,8 +335,7 @@ public class Recepcionista extends Empleado {
     public void guardarFactura(Integer numero_reserva, String factura) {
         try (
                 BufferedWriter bw = new BufferedWriter(new FileWriter(new File(
-                        "../proyecto1/entrega3/proyecto1_hotel/data/facturas/reserva"
-                                + String.valueOf(numero_reserva) + ".txt")))) {
+                        "../proyecto2_hotel/data/facturas/reserva" + String.valueOf(numero_reserva) + ".txt")))) {
 
             bw.write(factura);
             bw.close();
