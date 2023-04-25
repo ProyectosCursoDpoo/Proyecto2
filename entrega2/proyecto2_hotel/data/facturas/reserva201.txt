@@ -1,0 +1,23 @@
+Servicios utilizados: 
+ 	---Las habitaciones que utilizaste en tu reserva son:--- 
+Habitacion #201: 
+ Ubicacion: Piso2
+Capacidad: 2
+Camas: 
+	Capacidad: 1
+	Tamaño: Sencilla
+	Capacidad: 1
+	Tamaño: Sencilla
+
+	 ---Los huespedes hospedados fueron:--- 
+Nombre del huesped: Juan 
+Correo del huesped: juan@abc.com 
+Celular del huesped: 123456 
+Identificacion del huesped: 123456 
+
+	 ---Los consumos adicionales son:--- 
+Nombre del servicio adicional que contrato: Spa 
+Precio del servicio adicional que contrato: 50000 
+
+El precio total de la factura es: 980000,0 pesos colombianos 
+Gracias por reservar con nostros! 

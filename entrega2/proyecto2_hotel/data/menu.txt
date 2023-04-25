@@ -1,0 +1,9 @@
+Pizza;Cerveza;25000;18:00-23:00;Restaurante
+Sandwich;Refresco;8000;09:00-16:00;HabitacionyRestaurante
+Pollo frito;Agua mineral;12000;10:00-20:00;HabitacionyRestaurante
+Tacos;Jugo natural;15000;11:00-22:00;Restaurante
+Hamburguesa;Refresco;10000;12:00-21:00;Restaurante
+Sushi;Sake;45000;19:00-23:00;Restaurante
+Bistec;Café;18000;08:00-18:00;HabitacionyRestaurante
+CarneAsada;gaseosa;15000;11:00-22:00;resturante
+Ensalada;Vino tinto;30000;13:00-22:00;Restaurante

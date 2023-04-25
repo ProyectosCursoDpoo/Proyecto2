@@ -1,0 +1,5 @@
+Juan;123456;juan@abc.com;123456;01/01/2004
+Ana;789012;ana@example.com;213322;05/15/1992
+Pedro;345678;pedro@example.com;214242;11/27/1985
+Maria;901234;maria@example.com;435445;03/08/1999
+Luis;567890;luis@example.com;5474454;07/14/1990

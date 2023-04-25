@@ -1,0 +1,5 @@
+1401;Piso14;4;3;Doble-1/Doble-1;true;false;false;OCUPADO
+1101;Piso11;1;1;Sencilla-1;false;false;false;DISPONILE
+1501;Piso15;2;3;King-2/King-2;true;true;true;DISPONILE
+1201;Piso12;2;2;Sencilla-1/Sencilla-1;false;false;false;DISPONIBLE
+1301;Piso13;3;2;Sencilla-1/Sencilla-1/Sencilla-1;false;false;false;OCUPADO
