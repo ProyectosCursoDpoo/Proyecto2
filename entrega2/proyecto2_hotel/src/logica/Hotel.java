@@ -106,6 +106,29 @@ public class Hotel {
         guardarConsumos(consumos);
     }
 
+    public void ejecutarStaff1(){
+        Staff empleado = new Staff();
+        //Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
+        Boolean pago = true;
+        HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,consumos);
+        consumos = consumos_actualizados;
+    }
+
+    public void ejecutarStaff2(){
+        Staff empleado = new Staff();
+        empleado.mostrarFacturaPorReserva(consumos);
+    }
+
+    public void ejecutarLogOut(){
+        logOut();
+    }
+
+    public String[][] mostrarMenu(int lugar){
+        Staff empleado = new Staff();
+        String[][] menu = ((Staff) empleado).menuRestaurante(platos, lugar);
+        return menu;
+    }
+
     private void mostrarInfoStaff(String usuario, String contrasena) {
         int opcion;
         Staff empleado = new Staff();
