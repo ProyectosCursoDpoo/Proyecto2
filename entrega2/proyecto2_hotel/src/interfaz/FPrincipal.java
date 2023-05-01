@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
+ 
 public class FPrincipal extends JFrame {
 
     private Hotel hotel = new Hotel();
@@ -52,22 +52,18 @@ public class FPrincipal extends JFrame {
     }
 
     public void login(String usuario, String contrasena) {
-        //hotel.login(usuario, contrasena);
-        // Verificar tipo de usuario
-        try{
-            hotel.login(usuario, contrasena);
-        }
-        catch( Exception e )
-        {
-            JOptionPane.showMessageDialog( this, "Error al cargar el estado inicial " + e.getMessage( ), "Error", JOptionPane.ERROR_MESSAGE );
-        }
+
+
+       if (hotel.contrasena(usuario, contrasena)){
         if(usuario.contains("Recept"))  {
             cardLayout.show(contentP, "Recepcionista");
         } else if (usuario.contains("Admin")) {
             cardLayout.show(contentP, "Administrador");
         } else if (usuario.contains("Staff")) {
             cardLayout.show(contentP, "Staff");
-        } else {
+        } 
+        }
+        else {
             // Mostrar mensaje de error si el usuario no existe o no tiene un rol válido
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
         }

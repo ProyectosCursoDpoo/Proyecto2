@@ -62,6 +62,15 @@ public class Hotel {
 
     }
 
+    public boolean contrasena(String usuario, String contrasena){
+        if (contrasena.equals(database.get(usuario))){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public void login(String usuario, String contrasena) {
 
         System.out.println(database.get(usuario));
