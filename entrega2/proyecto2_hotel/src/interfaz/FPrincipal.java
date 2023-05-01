@@ -5,10 +5,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
+ 
 public class FPrincipal extends JFrame {
 
-    private Hotel hotel = new Hotel();
+    public Hotel hotel = new Hotel();
     private JPanel pRecept;
     private JPanel pAdmin;
     private FStaff pStaff;
@@ -44,30 +44,31 @@ public class FPrincipal extends JFrame {
     contentP.add(pAdmin, "Administrador");
     contentP.add(pStaff, "Staff");
 
+
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    // establece el tamaño del marco como las dimensiones de la pantalla
+    setSize(screenSize.width-50, screenSize.height-50);
+    // establece la ubicación del marco en la esquina superior izquierda de la pantalla
+    setLocationRelativeTo(null);
     setContentPane(contentP);
-    setSize(500, 500);
     setVisible(true);
 
 
     }
 
     public void login(String usuario, String contrasena) {
-        //hotel.login(usuario, contrasena);
-        // Verificar tipo de usuario
-        try{
-            hotel.login(usuario, contrasena);
-        }
-        catch( Exception e )
-        {
-            JOptionPane.showMessageDialog( this, "Error al cargar el estado inicial " + e.getMessage( ), "Error", JOptionPane.ERROR_MESSAGE );
-        }
+        
+       if (hotel.contrasena(usuario, contrasena)){
         if(usuario.contains("Recept"))  {
             cardLayout.show(contentP, "Recepcionista");
         } else if (usuario.contains("Admin")) {
             cardLayout.show(contentP, "Administrador");
         } else if (usuario.contains("Staff")) {
             cardLayout.show(contentP, "Staff");
-        } else {
+        } 
+        }
+        else {
             // Mostrar mensaje de error si el usuario no existe o no tiene un rol válido
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
         }
