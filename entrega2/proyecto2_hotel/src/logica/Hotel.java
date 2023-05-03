@@ -106,23 +106,6 @@ public class Hotel {
         guardarConsumos(consumos);
     }
 
-    public void ejecutarStaff1(){
-        Staff empleado = new Staff();
-        //Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
-        Boolean pago = true;
-        HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,consumos);
-        consumos = consumos_actualizados;
-    }
-
-    public void ejecutarStaff2(){
-        Staff empleado = new Staff();
-        empleado.mostrarFacturaPorReserva(consumos);
-    }
-
-    public void ejecutarLogOut(){
-        logOut();
-    }
-
     public String[][] mostrarMenu(int lugar){
         Staff empleado = new Staff();
         String[][] menu = ((Staff) empleado).menuRestaurante(platos, lugar);
@@ -140,11 +123,11 @@ public class Hotel {
             opcion = Integer.parseInt(input("\nSeleccione una opcion"));
             if (opcion == 1) {
                 Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
-                HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,
-                        consumos);
-                consumos = consumos_actualizados;
+                //HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,
+                  //      consumos);
+                //consumos = consumos_actualizados;
             } else if (opcion == 2) {
-                empleado.mostrarFacturaPorReserva(consumos);
+                //empleado.mostrarFacturaPorReserva(consumos);
             } else if (opcion == 3) {
                 logOut();
             } else {
@@ -228,7 +211,7 @@ public class Hotel {
                 empleado.cargarTarifa(archivoTarifaSuite, this.tarifasSuite);
                 empleado.cargarTarifa(archivoTarifaSuite2, this.tarifasSuite2);
             } else if (opcion == 4) {
-                empleado.cambiarTarifa(this.tarifasEstandar, this.tarifasSuite, this.tarifasSuite2);
+                //empleado.cambiarTarifa(this.tarifasEstandar, this.tarifasSuite, this.tarifasSuite2);
             } else if (opcion == 5) {
                 File archivoMenu = new File(
                         "../Proyecto2/entrega2/proyecto2_hotel/data/menu.txt");
@@ -238,7 +221,7 @@ public class Hotel {
                 int opcion2 = Integer.parseInt(input(
                         "Que desea modificar? (NombrePlato: 1 NombreBebida: 2 Precio: 3 RangoHora: 4  Ubicacion:5)"));
                 String mod = input("Ingrese la modificacion");
-                empleado.configurarPlato(nombrePlato, opcion2, mod, this.platos);
+                //empleado.configurarPlato(nombrePlato, opcion2, mod, this.platos);
             } else if (opcion == 7) {
                 logOut();
             } else {
