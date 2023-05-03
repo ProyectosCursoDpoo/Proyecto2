@@ -20,21 +20,12 @@ public class FPrincipal extends JFrame {
     public FPrincipal(){
         super("Sistema de hotel");
         hotel.cargarInformacion();
-    try
-        {
-            Hotel hotel = new Hotel( );
-        }
-        catch( Exception e )
-        {
-            JOptionPane.showMessageDialog( this, "Error al cargar el estado inicial " + e.getMessage( ), "Error", JOptionPane.ERROR_MESSAGE );
-        }
-    
+
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     //pRecept = new FRecepcionista(this);
-    //pAdmin = new FAdmin(this);
     pRecept = new JPanel();
-    pAdmin = new JPanel();
+    pAdmin = new FAdmin(this);
     pStaff = new FStaff(this);
 
     cardLayout = new CardLayout();
@@ -48,9 +39,10 @@ public class FPrincipal extends JFrame {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     // establece el tamaño del marco como las dimensiones de la pantalla
-    setSize(screenSize.width-50, screenSize.height-50);
+    setSize(screenSize.width-400, screenSize.height-200);
     // establece la ubicación del marco en la esquina superior izquierda de la pantalla
     setLocationRelativeTo(null);
+    setResizable(false);
     setContentPane(contentP);
     setVisible(true);
 
