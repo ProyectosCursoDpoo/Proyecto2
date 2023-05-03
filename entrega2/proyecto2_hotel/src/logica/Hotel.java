@@ -106,23 +106,6 @@ public class Hotel {
         guardarConsumos(consumos);
     }
 
-    public void ejecutarStaff1(){
-        Staff empleado = new Staff();
-        //Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
-        Boolean pago = true;
-        HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,consumos);
-        consumos = consumos_actualizados;
-    }
-
-    public void ejecutarStaff2(){
-        Staff empleado = new Staff();
-        empleado.mostrarFacturaPorReserva(consumos);
-    }
-
-    public void ejecutarLogOut(){
-        logOut();
-    }
-
     public String[][] mostrarMenu(int lugar){
         Staff empleado = new Staff();
         String[][] menu = ((Staff) empleado).menuRestaurante(platos, lugar);
@@ -140,11 +123,11 @@ public class Hotel {
             opcion = Integer.parseInt(input("\nSeleccione una opcion"));
             if (opcion == 1) {
                 Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
-                HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,
-                        consumos);
-                consumos = consumos_actualizados;
+                //HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,
+                  //      consumos);
+                //consumos = consumos_actualizados;
             } else if (opcion == 2) {
-                empleado.mostrarFacturaPorReserva(consumos);
+                //empleado.mostrarFacturaPorReserva(consumos);
             } else if (opcion == 3) {
                 logOut();
             } else {
