@@ -4,27 +4,26 @@ import javax.swing.*;
 import java.awt.*;
 //import java.io.*;
 
-public class Frecep extends JFrame {
+public class Frecep extends JPanel {
 
     public JLabel titulo;
-    public JPanel panel;
+    public JPanel panelOpciones;
 
     public Frecep() {
-
-        this.setTitle("Motel los pps");
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(1220, 800);
-        this.panel = new JPanel(getLayout());
-        this.panel.setBackground(new Color(28, 35, 46));
-
+        Color fondo = new Color(28, 35, 46);
+        this.setSize(getWidth(), getHeight());
         this.setLayout(new BorderLayout());
+        this.setBackground(fondo);
 
-        this.add(this.panel, BorderLayout.CENTER);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.titulo = new JLabel("RECEPCIONISTA");
+        this.titulo.setFont(new Font("Font Awesome 5 Brands", ALLBITS, 15));
+        this.titulo.setBackground(fondo);
+
+        this.panelOpciones = new JPanel(new FlowLayout());
+        this.panelOpciones.setBackground(fondo);
+
+        this.add(titulo, BorderLayout.NORTH);
+        this.add(panelOpciones, BorderLayout.CENTER);
     }
 
-    public static void main(String[] args) {
-        new Frecep();
-    }
 }
