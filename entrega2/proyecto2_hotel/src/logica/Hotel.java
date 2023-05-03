@@ -211,7 +211,7 @@ public class Hotel {
                 empleado.cargarTarifa(archivoTarifaSuite, this.tarifasSuite);
                 empleado.cargarTarifa(archivoTarifaSuite2, this.tarifasSuite2);
             } else if (opcion == 4) {
-                empleado.cambiarTarifa(this.tarifasEstandar, this.tarifasSuite, this.tarifasSuite2);
+                //empleado.cambiarTarifa(this.tarifasEstandar, this.tarifasSuite, this.tarifasSuite2);
             } else if (opcion == 5) {
                 File archivoMenu = new File(
                         "../Proyecto2/entrega2/proyecto2_hotel/data/menu.txt");
@@ -221,7 +221,7 @@ public class Hotel {
                 int opcion2 = Integer.parseInt(input(
                         "Que desea modificar? (NombrePlato: 1 NombreBebida: 2 Precio: 3 RangoHora: 4  Ubicacion:5)"));
                 String mod = input("Ingrese la modificacion");
-                empleado.configurarPlato(nombrePlato, opcion2, mod, this.platos);
+                //empleado.configurarPlato(nombrePlato, opcion2, mod, this.platos);
             } else if (opcion == 7) {
                 logOut();
             } else {

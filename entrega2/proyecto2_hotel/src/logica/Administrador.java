@@ -88,7 +88,7 @@ public class Administrador extends Empleado {
                 habitaciones,"disponible");
     }
 
-    private void crearHabitacion(int numero, String ubicacion, int capacidad, int tipo, boolean vista, boolean balcon,
+    public void crearHabitacion(int numero, String ubicacion, int capacidad, int tipo, boolean vista, boolean balcon,
             boolean cocina, ArrayList<Cama> camas, HashMap<String, Integer> precioEstandar,
             HashMap<String, Integer> precioSuite, HashMap<String, Integer> precioSuite2,
             HashMap<Integer, Habitacion> habitaciones, String estado) {
@@ -150,12 +150,12 @@ public class Administrador extends Empleado {
         }
     }
 
-    public void cambiarTarifa(HashMap<String, Integer> tarifaEstandar,HashMap<String, Integer> tarifaSuite, HashMap<String, Integer> tarifaSuite2) {
-        System.out.println("Cambiar Tarifa de un tipo de habitación");
+    public void cambiarTarifa(int opcionHabitacion, String nueva_fecha, int nueva_tarifa,HashMap<String, Integer> tarifaEstandar,HashMap<String, Integer> tarifaSuite, HashMap<String, Integer> tarifaSuite2) {
+        //System.out.println("Cambiar Tarifa de un tipo de habitación");
 
-        int opcionHabitacion=Integer.parseInt(input("A que tipo de habitacion desea hacer el cambio (Estandar: 1, Suite: 2, SuidteDoble: 3) "));
-        String nueva_fecha=input("Ingrese el rango de las fechas a cambiar (0101-0601) ");
-        int nueva_tarifa=Integer.parseInt(input("Ingrese el nuevo precio "));
+        // int opcionHabitacion=Integer.parseInt(input("A que tipo de habitacion desea hacer el cambio (Estandar: 1, Suite: 2, SuidteDoble: 3) "));
+        // String nueva_fecha=input("Ingrese el rango de las fechas a cambiar (0101-0601) ");
+        // int nueva_tarifa=Integer.parseInt(input("Ingrese el nuevo precio "));
 
         int fecha_ini = Integer.parseInt(nueva_fecha.substring(0,4));
         int fecha_fin = Integer.parseInt(nueva_fecha.substring(5));
@@ -226,31 +226,28 @@ public class Administrador extends Empleado {
         }
     }
 
-    public void configurarPlato(String nombreplato, int opcion, String modificacion, HashMap<String, Plato> platos) {
+    public void configurarPlato(String nombreplato, String nuevonombre, String nuevabebida, String nuevoprecio, String nuevahora, String nuevaubi, HashMap<String, Plato> platos) {
         System.out.println("Configurar Plato " + nombreplato);
         Plato plato_mod = platos.get(nombreplato);
         if (plato_mod != null) {
 
-            if (opcion == 1) {
-                System.out.println("Cambiar Nombre plato");
+            if (!nuevonombre.equals("")) {
                 plato_mod.setNombrePlato(nombreplato);
-            } else if (opcion == 2) {
-                System.out.println("Cambiar Bebida");
-                plato_mod.setNombreBebida(modificacion);
-            } else if (opcion == 3) {
-                System.out.println("Cambiar precio");
-                plato_mod.setPrecio(Integer.parseInt(modificacion));
-            } else if (opcion == 4) {
-                System.out.println("Cambiar Rango Hora");
-                plato_mod.setRangoHora(modificacion);
-            } else if (opcion == 5) {
-                System.out.println("Cambair Ubicacion");
-                plato_mod.setLugar(modificacion);
+            }
+            if (!nuevabebida.equals("")) {
+                plato_mod.setNombreBebida(nuevabebida);
+            }
+            if (!nuevoprecio.equals("")) {
+                plato_mod.setPrecio(Integer.parseInt(nuevoprecio));
+            } 
+            if (!nuevahora.equals("")) {
+                plato_mod.setRangoHora(nuevahora);
+            }
+            if (!nuevaubi.equals("")) {
+                plato_mod.setLugar(nuevaubi);
             }
             platos.replace(nombreplato, plato_mod);
-        } else {
-            System.out.println("El plato " + nombreplato + " no existe");
-        }
+        } 
     }
 
     public String getUsuario() {
