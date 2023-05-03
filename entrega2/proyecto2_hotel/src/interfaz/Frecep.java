@@ -2,28 +2,92 @@ package interfaz;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 //import java.io.*;
+import java.awt.event.ActionListener;
 
-public class Frecep extends JPanel {
+public class Frecep extends JPanel implements ActionListener {
 
     public JLabel titulo;
     public JPanel panelOpciones;
 
     public Frecep() {
+        inicializar();
+    }
+
+    public void inicializar() {
+
         Color fondo = new Color(28, 35, 46);
-        this.setSize(getWidth(), getHeight());
-        this.setLayout(new BorderLayout());
-        this.setBackground(fondo);
+        JPanel panel1 = new JPanel(new GridLayout(3, 3, 10, 10));
+        panel1.setBackground(fondo);
 
-        this.titulo = new JLabel("RECEPCIONISTA");
-        this.titulo.setFont(new Font("Font Awesome 5 Brands", ALLBITS, 15));
-        this.titulo.setBackground(fondo);
+        JButton bCoti = new JButton("Dar cotizacion");
+        bCoti.setFont(bCoti.getFont().deriveFont(18f));
+        bCoti.setPreferredSize(new Dimension(10, 10));
+        bCoti.addActionListener(this);
+        bCoti.setActionCommand("darcotizacion");
+        panel1.add(bCoti);
 
-        this.panelOpciones = new JPanel(new FlowLayout());
-        this.panelOpciones.setBackground(fondo);
+        JButton bReser = new JButton("Iniciar reserva");
+        bReser.setFont(bCoti.getFont().deriveFont(18f));
+        bReser.setPreferredSize(new Dimension(10, 10));
+        bReser.addActionListener(this);
+        bReser.setActionCommand("iniciarreserva");
+        panel1.add(bReser);
 
-        this.add(titulo, BorderLayout.NORTH);
-        this.add(panelOpciones, BorderLayout.CENTER);
+        JButton bsal = new JButton("Registrar Salida");
+        bsal.setFont(bCoti.getFont().deriveFont(18f));
+        bsal.setPreferredSize(new Dimension(10, 10));
+        bsal.addActionListener(this);
+        bsal.setActionCommand("registrarsalida");
+        panel1.add(bsal);
+
+        JButton bCan = new JButton("Cancelar Reserva");
+        bCan.setFont(bCoti.getFont().deriveFont(18f));
+        bCan.setPreferredSize(new Dimension(10, 10));
+        bCan.addActionListener(this);
+        bCan.setActionCommand("cancelarreserva");
+        panel1.add(bCan);
+
+        JPanel opciones = new JPanel(new GridLayout(1, 2, 10, 10));
+        opciones.setBackground(fondo);
+        opciones.add(panel1);
+
+        // contenedor principal
+        setLayout(new BorderLayout(10, 10));
+        add(opciones, BorderLayout.CENTER);
+
+        JButton bSalir = new JButton("Salir");
+        bSalir.setFont(bSalir.getFont().deriveFont(18f));
+        bSalir.setPreferredSize(new Dimension(50, 50));
+        bSalir.addActionListener(this);
+        bSalir.setActionCommand("salir");
+        add(bSalir, BorderLayout.SOUTH);
+
+        JLabel titulo = new JLabel("RECEPCIONISTA");
+        titulo.setFont(new Font("Font Awesome 5 Brands", ALLBITS, 30));
+        titulo.setBackground(new Color(255, 255, 255, 1));
+        titulo.setHorizontalAlignment(JLabel.CENTER);
+        add(titulo, BorderLayout.NORTH);
+        setBackground(fondo);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String comando = e.getActionCommand();
+        if (comando.equals("darcotizacion")) {
+            System.out.println("Dar cotizacion");
+            Fcotizacion ventanaCotizacion = new Fcotizacion();
+            ventanaCotizacion.setVisible(true);
+        } else if (comando.equals("iniciarreserva")) {
+            // TODO
+        } else if (comando.equals("registrarsalida")) {
+            // TODO
+        } else if (comando.equals("cancelarreserva")) {
+            // TODO
+        } else if (comando.equals("salir")) {
+            // TODO
+        }
     }
 
 }
