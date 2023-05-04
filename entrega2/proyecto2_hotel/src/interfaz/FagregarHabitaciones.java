@@ -15,8 +15,7 @@ public class FagregarHabitaciones extends JFrame implements ActionListener {
     Color fondo = new Color(28, 35, 46);
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     // private Frecep frecep;
-    // private Freserva freserva;
-    private Recepcionista recepcionista;
+    private Freserva freserva;
     private Hotel hotel;
     private ArrayList<Huesped> huespedesRegistrados;
     private ArrayList<Habitacion> habitacionesRegistradas;
@@ -29,7 +28,7 @@ public class FagregarHabitaciones extends JFrame implements ActionListener {
             ArrayList<Huesped> huespedes, Freserva freserva, HashMap<Integer, Habitacion> habitaciones) {
         this.hotel = hotel;
         // this.frecep = frecep;
-        // this.freserva = freserva;
+        this.freserva = freserva;
         this.huespedesRegistrados = huespedes;
         this.habitacionesRegistradas = new ArrayList<>();
         this.habitacionesDisponibles = habitaciones;
@@ -178,21 +177,14 @@ public class FagregarHabitaciones extends JFrame implements ActionListener {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
-                recepcionista = new Recepcionista();
-                HashMap<Integer, Huesped> huespedes = hotel.getHuespedes();
-                HashMap<Integer, reserva> reservas = hotel.getReservas();
-                HashMap<String, Integer> tarifasEstandar = hotel.getTarifasEstandar();
-                HashMap<String, Integer> tarifasSuite = hotel.getTarifasSuite();
-                HashMap<String, Integer> tarifasSuite2 = hotel.getTarifasSuite2();
-                HashMap<Integer, Grupo> grupos = hotel.getGrupos();
-                HashMap<Integer, Habitacion> habitaciones = hotel.getHabitaciones();
-                recepcionista.iniciarReserva(huespedes, reservas, habitaciones,
-                        recepcionista, tarifasEstandar,
-                        tarifasSuite,
-                        tarifasSuite2, grupos, habitacionesRegistradas, huespedesRegistrados);
+                FelegirFechas ventanaFechas = new FelegirFechas(this.hotel, this.huespedesRegistrados, this.freserva,
+                        this.habitacionesRegistradas);
+                ventanaFechas.setVisible(true);
+                dispose();
             }
         } else if (comando.equals("Volver")) {
-            // Volver al menu principal
+            this.dispose();
+            freserva.dispose();
         }
     }
 }

@@ -90,6 +90,10 @@ public class Hotel {
         return this.reservas;
     }
 
+    public void setReservas(HashMap<Integer, reserva> reservas) {
+        this.reservas = reservas;
+    }
+
     public HashMap<String, String> getDatabase() {
         return this.database;
     }
@@ -455,10 +459,10 @@ public class Hotel {
                 int tarifa = Integer.parseInt(partes[2]);
                 String fecha_inicio = partes[3];
                 String rango_fecha = partes[4];
-                String usuario_empleado = partes[5];
+                // String usuario_empleado = partes[5];
                 Grupo grupo = grupos.get(id_grupo);
 
-                String info_empleado = database.get(usuario_empleado);
+                // String info_empleado = database.get(usuario_empleado);
 
                 Recepcionista empleado = new Recepcionista();
 
