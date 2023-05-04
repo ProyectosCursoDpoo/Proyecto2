@@ -129,14 +129,16 @@ public class FelegirFechas extends JFrame implements ActionListener {
                 HashMap<Integer, Grupo> grupos = hotel.getGrupos();
                 HashMap<Integer, Habitacion> habitaciones = hotel.getHabitaciones();
 
-                HashMap<Integer, reserva> reservasA = recepcionista.iniciarReserva(huespedes, reservas, habitaciones,
+                recepcionista.iniciarReserva(huespedes, reservas, habitaciones,
                         recepcionista, tarifasEstandar,
                         tarifasSuite,
                         tarifasSuite2, grupos, habitacionesRegistradas, huespedesRegistrados, fechaLlegada,
-                        fechaSalida_a);
+                        fechaSalida_a, hotel);
                 // hotel.setReservas(reservasA);
-                System.out.println(reservasA);
-                // TODO guardarlo en hotel
+                // System.out.println(reservasA);
+                JOptionPane.showMessageDialog(null, "Reserva creada con exito", "Exito",
+                        JOptionPane.INFORMATION_MESSAGE);
+                dispose();
             }
         } else if (comando.equals("volver")) {
             dispose();

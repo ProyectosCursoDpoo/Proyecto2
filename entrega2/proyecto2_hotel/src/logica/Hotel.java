@@ -66,10 +66,6 @@ public class Hotel {
         return this.huespedes;
     }
 
-    public void setHabitaciones(HashMap<Integer, Habitacion> habitaciones) {
-        this.habitaciones = habitaciones;
-    }
-
     public HashMap<Integer, Habitacion> getHabitaciones() {
         return this.habitaciones;
     }
@@ -92,6 +88,18 @@ public class Hotel {
 
     public void setReservas(HashMap<Integer, reserva> reservas) {
         this.reservas = reservas;
+    }
+
+    public void setHabitaciones(HashMap<Integer, Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
+
+    public void setGrupos(HashMap<Integer, Grupo> grupos) {
+        this.grupos = grupos;
+    }
+
+    public void setHuespedes(HashMap<Integer, Huesped> huespedes) {
+        this.huespedes = huespedes;
     }
 
     public HashMap<String, String> getDatabase() {
