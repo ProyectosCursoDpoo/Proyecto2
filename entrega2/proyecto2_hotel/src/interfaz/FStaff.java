@@ -7,18 +7,18 @@ import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 import java.io.*;
 
-public class FStaff extends JPanel implements ActionListener{
+public class FStaff extends JPanel implements ActionListener {
     FPrincipal principal;
     private CardLayout cardLayout;
     private JPanel cardsPanel;
 
-    public FStaff(FPrincipal fPrincipal){
-        //super(new GridLayout(2,1));
+    public FStaff(FPrincipal fPrincipal) {
+        // super(new GridLayout(2,1));
         this.principal = fPrincipal;
         inicializar();
     }
 
-    public void inicializar(){
+    public void inicializar() {
         Color fondo = new Color(28, 35, 46);
         JPanel panel1 = new JPanel(new BorderLayout(10, 10)); // espacio entre los componentes de 10 píxeles
         panel1.setBackground(fondo);
@@ -30,7 +30,9 @@ public class FStaff extends JPanel implements ActionListener{
         boton1.addActionListener(this);
         boton1.setActionCommand("registrarServicio");
         ImageIcon icon1 = new ImageIcon("../Proyecto2/entrega2/proyecto2_hotel/data/servicio.png");
-        ImageIcon icon1Scaled = new ImageIcon(icon1.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // escala la imagen
+        ImageIcon icon1Scaled = new ImageIcon(icon1.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // escala
+                                                                                                                 // la
+                                                                                                                 // imagen
         JLabel image1 = new JLabel(icon1Scaled);
         panel1.add(boton1, BorderLayout.SOUTH);
         panel1.add(image1, BorderLayout.CENTER);
@@ -46,7 +48,9 @@ public class FStaff extends JPanel implements ActionListener{
         boton2.addActionListener(this);
         boton2.setActionCommand("consultarConsumo");
         ImageIcon icon2 = new ImageIcon("../Proyecto2/entrega2/proyecto2_hotel/data/factura.png");
-        ImageIcon icon2Scaled = new ImageIcon(icon2.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // escala la imagen
+        ImageIcon icon2Scaled = new ImageIcon(icon2.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)); // escala
+                                                                                                                 // la
+                                                                                                                 // imagen
         JLabel image2 = new JLabel(icon2Scaled);
         panel2.add(boton2, BorderLayout.SOUTH);
         panel2.add(image2, BorderLayout.CENTER);
@@ -75,18 +79,16 @@ public class FStaff extends JPanel implements ActionListener{
         
     }
 
-    public void actionPerformed(ActionEvent pEvento){
+    public void actionPerformed(ActionEvent pEvento) {
         String comando = pEvento.getActionCommand();
-        if (comando.equals("registrarServicio")){
+        if (comando.equals("registrarServicio")) {
             System.out.println("Registrar servicio");
             FServicio ventanaServicio = new FServicio(this);
             ventanaServicio.setVisible(true);
-        }
-        else if (comando.equals("consultarConsumo")){
+        } else if (comando.equals("consultarConsumo")) {
             FConsumo ventanaConsumo = new FConsumo(this);
             ventanaConsumo.setVisible(true);
-        }
-        else if (comando.equals("Salir")){
+        } else if (comando.equals("Salir")) {
             principal.setVisible(true);
             this.setVisible(false);   
             this.principal.hotel.logOut();
@@ -94,5 +96,3 @@ public class FStaff extends JPanel implements ActionListener{
     }
 
 }
-
-
