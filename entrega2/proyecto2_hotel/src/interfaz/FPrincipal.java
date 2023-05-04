@@ -29,9 +29,9 @@ public class FPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // pRecept = new FRecepcionista(this);
-        // pAdmin = new FAdmin(this);
+        pAdmin = new FAdmin(this);
         pRecept = new Frecep(this.hotel, this);
-        pAdmin = new JPanel();
+        //pAdmin = new JPanel();
         pStaff = new FStaff(this);
 
         cardLayout = new CardLayout();
@@ -47,6 +47,7 @@ public class FPrincipal extends JFrame {
         setSize(screenSize.width - 50, screenSize.height - 50);
         // establece la ubicación del marco en la esquina superior izquierda de la
         // pantalla
+        setResizable(false);
         setLocationRelativeTo(null);
         setContentPane(contentP);
         setVisible(true);
