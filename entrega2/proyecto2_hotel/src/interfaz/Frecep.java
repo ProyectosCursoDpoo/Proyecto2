@@ -5,13 +5,18 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 //import java.io.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import logica.*;
+
+//TODO: MODIFICAR LAS RESERVAS PARA QUE SE GUARDEN
 
 public class Frecep extends JPanel implements ActionListener {
     FPrincipal principal;
     public JLabel titulo;
     public JPanel panelOpciones;
     public Hotel hotel;
+    public Recepcionista recepcionista;
 
     public Frecep(Hotel hotel, FPrincipal principal) {
         this.hotel = hotel;
@@ -85,7 +90,9 @@ public class Frecep extends JPanel implements ActionListener {
             Fcotizacion ventanaCotizacion = new Fcotizacion(this, this.hotel);
             ventanaCotizacion.setVisible(true);
         } else if (comando.equals("iniciarreserva")) {
-            // TODO
+            ArrayList<Huesped> huespedes = new ArrayList<Huesped>();
+            Freserva ventanaReserva = new Freserva(this, this.hotel, huespedes);
+            ventanaReserva.setVisible(true);
         } else if (comando.equals("registrarsalida")) {
             // TODO
         } else if (comando.equals("cancelarreserva")) {
