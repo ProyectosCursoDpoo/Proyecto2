@@ -8,6 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+
+import javax.swing.plaf.synth.SynthSplitPaneUI;
+
 import java.time.LocalDateTime;
 
 public class Staff extends Empleado {
@@ -19,12 +22,12 @@ public class Staff extends Empleado {
 
     public HashMap<Integer, Consumo> registrarServicio(HashMap<Integer, reserva> reserva, HashMap<String, Plato> menu,
             boolean pago,
-            HashMap<Integer, Consumo> consumos_actualizados) {
+            HashMap<Integer, Consumo> consumos_actualizados, ArrayList<Integer> pedido, int numReserva, int nombreServicios, int cantidad, int lugar) {
 
         String nombre_servicio = "";
-        int numReserva = Integer.parseInt(input("Ingrese su numero de reserva"));
-        int nombreServicios = Integer.parseInt(input(
-                "Ingrese el numero del servicio que desea pagar: \n 1. Spa \n 2. Restaurante \n 3. Guia Turistica"));
+        //int numReserva = Integer.parseInt(input("Ingrese su numero de reserva"));
+        //int nombreServicios = Integer.parseInt(input(
+          //      "Ingrese el numero del servicio que desea pagar: \n 1. Spa \n 2. Restaurante \n 3. Guia Turistica"));
 
         reserva reservaActual = reserva.get(numReserva);
         Servicios servicio = null;
@@ -36,18 +39,20 @@ public class Staff extends Empleado {
             System.out.println("El servicio elegido es restaurante");
             nombre_servicio = "Restaurante";
 
-            int lugar = Integer.parseInt(input(
-                    "Ingrese el numero del lugar donde desea consumir los platos: \n 1. Restaurante \n 2. Habitacion"));
+            //int lugar = Integer.parseInt(input(
+              //      "Ingrese el numero del lugar donde desea consumir los platos: \n 1. Restaurante \n 2. Habitacion"));
             servicio = new Restaurante();
             if (lugar == 1) {
                 ((Restaurante) servicio).setUbicacion("Restaurante");
             } else if (lugar == 2) {
                 ((Restaurante) servicio).setUbicacion("Habitacion");
             }
-            mostrarMenuRestaurante(menu, (Restaurante) servicio, lugar);
+            ArrayList<Plato> platos = mostrarMenuRestaurante(menu, (Restaurante) servicio, lugar);
+            realizarPedidoRestaurante(platos, (Restaurante) servicio, pedido);
+
 
         } else if (nombreServicios == 3) {
-            int cantidad = Integer.parseInt(input("Ingrese la cantidad de personas que desea tomar la guia turistica"));
+            //int cantidad = Integer.parseInt(input("Ingrese la cantidad de personas que desea tomar la guia turistica"));
             nombre_servicio = "GuiaTuristica";
 
             servicio = new GuiaTuristica();
@@ -69,6 +74,58 @@ public class Staff extends Empleado {
 
         consumos_actualizados.put(id, consumo);
         return consumos_actualizados;
+    }
+
+    public String facturaInmediata(HashMap<Integer, reserva> reserva, HashMap<String, Plato> menu,
+            boolean pago,
+            HashMap<Integer, Consumo> consumos_actualizados, ArrayList<Integer> pedido, int numReserva, int nombreServicios, int cantidad, int lugar) {
+
+        String nombre_servicio = "";
+        //int numReserva = Integer.parseInt(input("Ingrese su numero de reserva"));
+        //int nombreServicios = Integer.parseInt(input(
+          //      "Ingrese el numero del servicio que desea pagar: \n 1. Spa \n 2. Restaurante \n 3. Guia Turistica"));
+
+        reserva reservaActual = reserva.get(numReserva);
+        Servicios servicio = null;
+        if (nombreServicios == 1) {
+            System.out.println("Se ha registrado un servicio de spa");
+            servicio = new Spa();
+            nombre_servicio = "Spa";
+        } else if (nombreServicios == 2) {
+            System.out.println("El servicio elegido es restaurante");
+            nombre_servicio = "Restaurante";
+
+            //int lugar = Integer.parseInt(input(
+              //      "Ingrese el numero del lugar donde desea consumir los platos: \n 1. Restaurante \n 2. Habitacion"));
+            servicio = new Restaurante();
+            if (lugar == 1) {
+                ((Restaurante) servicio).setUbicacion("Restaurante");
+            } else if (lugar == 2) {
+                ((Restaurante) servicio).setUbicacion("Habitacion");
+            }
+            ArrayList<Plato> platos = mostrarMenuRestaurante(menu, (Restaurante) servicio, lugar);
+            realizarPedidoRestaurante(platos, (Restaurante) servicio, pedido);
+
+
+        } else if (nombreServicios == 3) {
+            //int cantidad = Integer.parseInt(input("Ingrese la cantidad de personas que desea tomar la guia turistica"));
+            nombre_servicio = "GuiaTuristica";
+
+            servicio = new GuiaTuristica();
+            servicio.setCantidadPersonas(cantidad);
+
+        } 
+
+        int id = 0;
+        do {
+            id = random.nextInt(1001);
+        } while (consumos_actualizados.containsKey(id));
+        Consumo consumo = new Consumo(reservaActual, servicio, pago, id, nombre_servicio);
+        reservaActual.agregarConsumo(consumo);
+
+        String factura = generarFactura(consumo);
+        
+        return factura;
     }
 
     public void guardarFactura(Integer numero_reserva, String factura) {
@@ -107,7 +164,56 @@ public class Staff extends Empleado {
 
     }
 
-    public void mostrarMenuRestaurante(HashMap<String, Plato> menu, Restaurante servicio, int lugar) {
+    public String[][] menuRestaurante(HashMap<String, Plato> menu, int lugar) {
+        int n = 1;
+        ArrayList<Plato> platos = new ArrayList<Plato>();
+        LocalDateTime actual = LocalDateTime.now();
+        int hora = actual.getHour();
+        List<Plato> menuDisponible = new ArrayList<Plato>();
+        String[][] menuString = new String[menu.size()][2];
+        int index = 0;
+        if (lugar == 1) {
+            System.out.println("Los productos disponibles para consumir en el restaurante en el Menu en este momento ("
+                    + hora + "h) son: ");
+            for (Map.Entry<String, Plato> entry : menu.entrySet()) {
+                if (entry.getValue().getHoraInicio() <= hora &&
+                        entry.getValue().getHoraFin() >= hora &&
+                        (entry.getValue().getLugar().equals("Restaurante") ||
+                                entry.getValue().getLugar().equals("HabitacionyRestaurante"))) {
+    
+                    System.out.println(n + ". " + entry.getKey() + " "
+                            + entry.getValue().getPrecio());
+                    platos.add(entry.getValue());
+                    menuDisponible.add(entry.getValue());
+                    menuString[index][0] = entry.getKey();
+                    menuString[index][1] = String.valueOf(entry.getValue().getPrecio());
+                    index += 1;
+                    n += 1;
+                }
+            }
+        } else if (lugar == 2) {
+            System.out.println("Los productos disponibles para consumir en su habitacion en el Menu en este momento ("
+                    + hora + "h) son: ");
+            for (Map.Entry<String, Plato> entry : menu.entrySet()) {
+                if (entry.getValue().getHoraInicio() <= hora &&
+                        entry.getValue().getHoraFin() >= hora &&
+                        (entry.getValue().getLugar().equals("HabitacionyRestaurante"))) {
+    
+                    System.out.println(n + ". " + entry.getKey() + " "
+                            + entry.getValue().getPrecio());
+                    platos.add(entry.getValue());
+                    menuDisponible.add(entry.getValue());
+                    menuString[index][0] = entry.getKey();
+                    menuString[index][1] = String.valueOf(entry.getValue().getPrecio());
+                    index += 1;
+                    n += 1;
+                }
+            }
+        }
+        return menuString;
+    }
+
+    public ArrayList<Plato> mostrarMenuRestaurante(HashMap<String, Plato> menu, Restaurante servicio, int lugar) {
         int n = 1;
         ArrayList<Plato> platos = new ArrayList<Plato>();
         LocalDateTime actual = LocalDateTime.now();
@@ -142,29 +248,16 @@ public class Staff extends Empleado {
                 }
             }
         }
-        realizarPedidoRestaurante(platos, servicio);
+        return platos;
     }
 
-    public void realizarPedidoRestaurante(ArrayList<Plato> platos, Restaurante servicio) {
-        boolean terminarOrden = false;
-        if (platos.isEmpty()) {
-            terminarOrden = true;
-        }
-
-        while (!terminarOrden) {
-            int opcion = Integer.parseInt(input("Ingrese el numero del plato que desea ordenar"));
-            Plato plato = platos.get(opcion - 1);
-            servicio.agregarPlato(plato);
-
-            String continuar = input("Desea agregar otro plato? (s/n)");
-            if (continuar.equals("n")) {
-                terminarOrden = true;
-            }
+    public void realizarPedidoRestaurante(ArrayList<Plato> platos, Restaurante servicio, ArrayList<Integer> pedido) {
+        for (int i = 0; i < pedido.size(); i++) {
+            servicio.agregarPlato(platos.get(pedido.get(i) ));
         }
     }
 
     public String generarFactura(Consumo consumo) {
-        //System.out.println(consumo);
         StringBuilder sb = new StringBuilder();
         if (consumo.getServicio().getNombre().equals("Restaurante")) {
             sb = generarFacturaRestaurante(consumo);
@@ -175,29 +268,29 @@ public class Staff extends Empleado {
         else if (consumo.getServicio().getNombre().equals("GuiaTuristica")) {
             sb = generarFacturaGuiaTuristica(consumo);
         }
-        //System.out.println(sb.toString());
         return sb.toString();
     }
 
-    public void mostrarFacturaPorReserva(HashMap<Integer, Consumo> consumos) {
-        int numeroReserva = Integer.parseInt(input("Ingrese el numero de reserva para ver los consumos asociados a esta reserva"));
+    public String mostrarFacturaPorReserva(HashMap<Integer, Consumo> consumos, int numeroReserva) {
         String info = "";
         BufferedReader br;
         String linea;
         try {
             br = new BufferedReader(
-                    new FileReader(new File("../proyecto1/entrega3/proyecto1_hotel/data/facturas_servicios/consumo"
+                    new FileReader(new File("../Proyecto2/entrega2/proyecto2_hotel/data/facturas_servicios/consumo"
                     + String.valueOf(numeroReserva) + ".txt")));
             linea = br.readLine();
             while (linea != null) {
                 info += linea;
+                info += "\n";
+                info += "-----------------------------------------------------\n";
 
                 linea = br.readLine();
             }
         } catch (IOException e) {
         }
 
-        System.out.println(info);
+        return info;
         
         
     }
@@ -206,6 +299,7 @@ public class Staff extends Empleado {
         StringBuilder sb = new StringBuilder();
 
         Restaurante restaurante = (Restaurante) consumo.getServicio();
+        System.out.println(restaurante.getPlatos());
 
         if (restaurante.getPlatos().isEmpty()) {
             System.out.println("---------------------\n");

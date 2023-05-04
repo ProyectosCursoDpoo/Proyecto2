@@ -48,7 +48,7 @@ public class FPrincipal extends JFrame {
     });
 
     // establece el tamaño del marco como las dimensiones de la pantalla
-    setSize(screenSize.width-50, screenSize.height-50);
+    setSize(screenSize.width-100, screenSize.height-100);
     // establece la ubicación del marco en la esquina superior izquierda de la pantalla
     setLocationRelativeTo(null);
     setResizable(false);

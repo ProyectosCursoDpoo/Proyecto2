@@ -1,11 +1,13 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import logica.Consumo;
 import logica.Empleado;
 import logica.Staff;
 
@@ -24,7 +26,7 @@ public class FConsumo extends JFrame implements ActionListener {
     public void inicializar() {
         // Crear el JLabel y el JTextField para el número de reserva
         JLabel numeroReservaLabel = new JLabel("Número de reserva:");
-        numeroReservaTextField = new JTextField(20);
+        numeroReservaTextField = new JTextField(30);
 
         // Crear el botón de "Buscar"
         JButton buscarButton = new JButton("Buscar");
@@ -44,6 +46,8 @@ public class FConsumo extends JFrame implements ActionListener {
         getContentPane().add(new JScrollPane(facturaTextArea), BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(fStaff);
+        setPreferredSize(new Dimension(500, 500));
         setVisible(true);
     }
 
@@ -54,10 +58,12 @@ public class FConsumo extends JFrame implements ActionListener {
 
         // Buscar la factura correspondiente al número de reserva
         Staff staff = new Staff();
-        StringBuilder factura = staff.mostrarFacturaPorReserva(fStaff.principal.hotel.consumos, numeroReserva);
+        System.out.println(fStaff.principal.hotel.consumos);
+
+        String factura = staff.mostrarFacturaPorReserva(fStaff.principal.hotel.consumos, numeroReserva);
 
         // Mostrar la factura al usuario
-        facturaTextArea.setText(factura.toString());
+        facturaTextArea.setText(factura);
     }
 
 }

@@ -112,11 +112,11 @@ public class Hotel {
         guardarConsumos(consumos);
     }
 
-    // public String[][] mostrarMenu(int lugar){
-    //     Staff empleado = new Staff();
-    //     String[][] menu = ((Staff) empleado).menuRestaurante(platos, lugar);
-    //     return menu;
-    // }
+    public String[][] mostrarMenu(int lugar){
+        Staff empleado = new Staff();
+        String[][] menu = ((Staff) empleado).menuRestaurante(platos, lugar);
+        return menu;
+    }
 
     private void mostrarInfoStaff(String usuario, String contrasena) {
         int opcion;
@@ -129,11 +129,11 @@ public class Hotel {
             opcion = Integer.parseInt(input("\nSeleccione una opcion"));
             if (opcion == 1) {
                 Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
-                HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,
-                        consumos);
-                consumos = consumos_actualizados;
+               // HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,
+                 //       consumos);
+                //consumos = consumos_actualizados;
             } else if (opcion == 2) {
-                empleado.mostrarFacturaPorReserva(consumos);
+                //empleado.mostrarFacturaPorReserva(consumos);
             } else if (opcion == 3) {
                 logOut();
             } else {
