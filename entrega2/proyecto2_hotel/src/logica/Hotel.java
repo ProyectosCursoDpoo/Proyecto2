@@ -62,11 +62,62 @@ public class Hotel {
 
     }
 
-    public boolean contrasena(String usuario, String contrasena){
-        if (contrasena.equals(database.get(usuario))){
+    public HashMap<Integer, Huesped> getHuespedes() {
+        return this.huespedes;
+    }
+
+    public void setHabitaciones(HashMap<Integer, Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
+
+    public HashMap<Integer, Habitacion> getHabitaciones() {
+        return this.habitaciones;
+    }
+
+    public HashMap<String, Plato> getPlatos() {
+        return this.platos;
+    }
+
+    public HashMap<String, Servicios> getServicios() {
+        return this.servicios;
+    }
+
+    public HashMap<Integer, Factura> getFacturas() {
+        return this.facturas;
+    }
+
+    public HashMap<Integer, reserva> getReservas() {
+        return this.reservas;
+    }
+
+    public HashMap<String, String> getDatabase() {
+        return this.database;
+    }
+
+    public HashMap<String, Integer> getTarifasEstandar() {
+        return this.tarifasEstandar;
+    }
+
+    public HashMap<String, Integer> getTarifasSuite() {
+        return this.tarifasSuite;
+    }
+
+    public HashMap<String, Integer> getTarifasSuite2() {
+        return this.tarifasSuite2;
+    }
+
+    public HashMap<Integer, Grupo> getGrupos() {
+        return this.grupos;
+    }
+
+    public HashMap<Integer, Consumo> getConsumos() {
+        return this.consumos;
+    }
+
+    public boolean contrasena(String usuario, String contrasena) {
+        if (contrasena.equals(database.get(usuario))) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -106,7 +157,7 @@ public class Hotel {
         guardarConsumos(consumos);
     }
 
-    public String[][] mostrarMenu(int lugar){
+    public String[][] mostrarMenu(int lugar) {
         Staff empleado = new Staff();
         String[][] menu = ((Staff) empleado).menuRestaurante(platos, lugar);
         return menu;
@@ -123,11 +174,12 @@ public class Hotel {
             opcion = Integer.parseInt(input("\nSeleccione una opcion"));
             if (opcion == 1) {
                 Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
-                //HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,
-                  //      consumos);
-                //consumos = consumos_actualizados;
+                // HashMap<Integer, Consumo> consumos_actualizados =
+                // empleado.registrarServicio(reservas, platos, pago,
+                // consumos);
+                // consumos = consumos_actualizados;
             } else if (opcion == 2) {
-                //empleado.mostrarFacturaPorReserva(consumos);
+                // empleado.mostrarFacturaPorReserva(consumos);
             } else if (opcion == 3) {
                 logOut();
             } else {
@@ -211,7 +263,8 @@ public class Hotel {
                 empleado.cargarTarifa(archivoTarifaSuite, this.tarifasSuite);
                 empleado.cargarTarifa(archivoTarifaSuite2, this.tarifasSuite2);
             } else if (opcion == 4) {
-                //empleado.cambiarTarifa(this.tarifasEstandar, this.tarifasSuite, this.tarifasSuite2);
+                // empleado.cambiarTarifa(this.tarifasEstandar, this.tarifasSuite,
+                // this.tarifasSuite2);
             } else if (opcion == 5) {
                 File archivoMenu = new File(
                         "../Proyecto2/entrega2/proyecto2_hotel/data/menu.txt");
@@ -221,7 +274,7 @@ public class Hotel {
                 int opcion2 = Integer.parseInt(input(
                         "Que desea modificar? (NombrePlato: 1 NombreBebida: 2 Precio: 3 RangoHora: 4  Ubicacion:5)"));
                 String mod = input("Ingrese la modificacion");
-                //empleado.configurarPlato(nombrePlato, opcion2, mod, this.platos);
+                // empleado.configurarPlato(nombrePlato, opcion2, mod, this.platos);
             } else if (opcion == 7) {
                 logOut();
             } else {
@@ -306,6 +359,7 @@ public class Hotel {
                 }
                 linea = br.readLine();
             }
+            setHabitaciones(habitaciones);
             br.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -406,8 +460,7 @@ public class Hotel {
 
                 String info_empleado = database.get(usuario_empleado);
 
-                Recepcionista empleado = new Recepcionista(usuario_empleado, info_empleado,
-                        usuario_empleado.substring(6));
+                Recepcionista empleado = new Recepcionista();
 
                 reserva reserva = new reserva(id_reserva, grupo, tarifa, fecha_inicio, rango_fecha, empleado);
                 reservas.put(id_reserva, reserva);

@@ -5,13 +5,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 //import java.io.*;
 import java.awt.event.ActionListener;
+import logica.*;
 
 public class Frecep extends JPanel implements ActionListener {
-
+    FPrincipal principal;
     public JLabel titulo;
     public JPanel panelOpciones;
+    public Hotel hotel;
 
-    public Frecep() {
+    public Frecep(Hotel hotel, FPrincipal principal) {
+        this.hotel = hotel;
+        this.principal = principal;
         inicializar();
     }
 
@@ -66,7 +70,8 @@ public class Frecep extends JPanel implements ActionListener {
 
         JLabel titulo = new JLabel("RECEPCIONISTA");
         titulo.setFont(new Font("Font Awesome 5 Brands", ALLBITS, 30));
-        titulo.setBackground(new Color(255, 255, 255, 1));
+        titulo.setBackground(fondo);
+        titulo.setForeground(Color.WHITE);
         titulo.setHorizontalAlignment(JLabel.CENTER);
         add(titulo, BorderLayout.NORTH);
         setBackground(fondo);
@@ -77,7 +82,7 @@ public class Frecep extends JPanel implements ActionListener {
         String comando = e.getActionCommand();
         if (comando.equals("darcotizacion")) {
             System.out.println("Dar cotizacion");
-            Fcotizacion ventanaCotizacion = new Fcotizacion();
+            Fcotizacion ventanaCotizacion = new Fcotizacion(this, this.hotel);
             ventanaCotizacion.setVisible(true);
         } else if (comando.equals("iniciarreserva")) {
             // TODO
@@ -86,7 +91,8 @@ public class Frecep extends JPanel implements ActionListener {
         } else if (comando.equals("cancelarreserva")) {
             // TODO
         } else if (comando.equals("salir")) {
-            // TODO
+            principal.setVisible(true);
+            this.setVisible(false);
         }
     }
 

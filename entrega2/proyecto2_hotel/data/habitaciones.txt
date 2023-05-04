@@ -1,5 +1,5 @@
 401;Piso4;4;3;Doble-1/Doble-1;true;false;false;OCUPADA
 101;Piso1;1;1;Sencilla-1;false;false;false;DISPONIBLE
-501;Piso5;2;3;King-2/King-2;true;true;true;OCUPADA
-201;Piso2;2;2;Sencilla-1/Sencilla-1;false;false;false;OCUPADA
+501;Piso5;2;3;King-2/King-2;true;true;true;DISPONIBLE
+201;Piso2;2;2;Sencilla-1/Sencilla-1;false;false;false;DISPONIBLE
 301;Piso3;3;2;Sencilla-1/Sencilla-1/Sencilla-1;false;false;false;DISPONIBLE

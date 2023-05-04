@@ -30,7 +30,7 @@ public class FPrincipal extends JFrame {
 
         // pRecept = new FRecepcionista(this);
         // pAdmin = new FAdmin(this);
-        pRecept = new Frecep();
+        pRecept = new Frecep(this.hotel, this);
         pAdmin = new JPanel();
         pStaff = new FStaff(this);
 
