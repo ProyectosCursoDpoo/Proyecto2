@@ -1,0 +1,52 @@
+---------------------
+Factura Spa: 
+---------------------
+Reserva numero: 501
+Precio por persona por servicio de spa: 50000
+---------------------
+Tipo de pago: No inmediato - Se sumara a su checkout
+
+
+---------------------
+Factura Guia Turística: 
+---------------------
+Reserva numero: 501
+Cantidad de personas: 1
+Precio por persona: 30000
+Precio total: 30000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Guia Turística: 
+---------------------
+Reserva numero: 501
+Cantidad de personas: 1
+Precio por persona: 30000
+Precio total: 30000
+---------------------
+Tipo de pago: No inmediato - Se sumara a su checkout
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 501
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Tacos - $15000
+     Tacos - $15000
+     Hamburguesa - $10000
+     Hamburguesa - $10000
+---------------------
+Precio total: $50000
+---------------------
+Tipo de pago: No inmediato - Se sumara a su checkout
+
+---------------------
+Factura Spa: 
+---------------------
+Reserva numero: 501
+Precio por persona por servicio de spa: 50000
+---------------------
+Tipo de pago: Inmediato

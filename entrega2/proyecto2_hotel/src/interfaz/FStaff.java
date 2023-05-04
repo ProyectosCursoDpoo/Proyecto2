@@ -24,8 +24,8 @@ public class FStaff extends JPanel implements ActionListener {
         panel1.setBackground(fondo);
 
         JButton boton1 = new JButton("Registrar servicio");
-        boton1.setFont(boton1.getFont().deriveFont(18f)); // aumenta el tamaño de la fuente
-        boton1.setHorizontalAlignment(JLabel.CENTER); // centra el texto
+        boton1.setFont(boton1.getFont().deriveFont(18f)); 
+        boton1.setHorizontalAlignment(JLabel.CENTER); 
         boton1.setPreferredSize(new Dimension(50, 50));
         boton1.addActionListener(this);
         boton1.setActionCommand("registrarServicio");
@@ -42,8 +42,8 @@ public class FStaff extends JPanel implements ActionListener {
         panel2.setBackground(fondo);
 
         JButton boton2 = new JButton("Consultar consumo por reserva");
-        boton2.setFont(boton2.getFont().deriveFont(18f)); // aumenta el tamaño de la fuente
-        boton2.setHorizontalAlignment(JLabel.CENTER); // centra el texto
+        boton2.setFont(boton2.getFont().deriveFont(18f)); 
+        boton2.setHorizontalAlignment(JLabel.CENTER); 
         boton2.setPreferredSize(new Dimension(50, 50));
         boton2.addActionListener(this);
         boton2.setActionCommand("consultarConsumo");
@@ -62,20 +62,21 @@ public class FStaff extends JPanel implements ActionListener {
         cuadrados.add(panel2);
 
         // Configura el contenedor principal
-        setLayout(new BorderLayout(10, 10)); // espacio entre los componentes de 10 píxeles
+        setLayout(new BorderLayout(10, 10)); 
         add(cuadrados, BorderLayout.CENTER);
         JButton botonSalida = new JButton("Salir");
-        botonSalida.setFont(botonSalida.getFont().deriveFont(18f)); // aumenta el tamaño de la fuente
+        botonSalida.setFont(botonSalida.getFont().deriveFont(18f)); 
         botonSalida.setPreferredSize(new Dimension(50, 50));
         botonSalida.addActionListener(this);
         botonSalida.setActionCommand("Salir");
         add(botonSalida, BorderLayout.SOUTH);
         JLabel titulo = new JLabel("Staff");
-        titulo.setFont(titulo.getFont().deriveFont(24f)); // aumenta el tamaño de la fuente
-        titulo.setHorizontalAlignment(JLabel.CENTER); // centra el texto
+        titulo.setFont(new Font("Georgia", Font.BOLD, 50));        
+        titulo.setForeground(Color.WHITE);
+        titulo.setHorizontalAlignment(JLabel.CENTER); 
         add(titulo, BorderLayout.NORTH);
-        setBackground(fondo); // color blanco de fondo
-
+        setBackground(fondo);
+        
     }
 
     public void actionPerformed(ActionEvent pEvento) {
@@ -89,8 +90,9 @@ public class FStaff extends JPanel implements ActionListener {
             ventanaConsumo.setVisible(true);
         } else if (comando.equals("Salir")) {
             principal.setVisible(true);
-            this.setVisible(false);
-        }
+            this.setVisible(false);   
+            this.principal.hotel.logOut();
+            }
     }
 
 }
