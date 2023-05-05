@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.*;
 
 import logica.Consumo;
@@ -34,7 +35,8 @@ public class FServicio extends JFrame implements ActionListener {
         setSize(screenSize.width-400, screenSize.height-350);
         setLocationRelativeTo(fStaff);
 
-        JPanel panel = new JPanel(new GridLayout(1, 3));
+        JPanel panel = new JPanel(new GridLayout(1, 3, 10, 10));
+        panel.setBorder(new EmptyBorder(20,20,20,20));
         panel.setBackground(fondo);
         JButton boton1 = new JButton("Restaurante");
         boton1.setFont(new Font("Georgia", Font.BOLD, 25));
