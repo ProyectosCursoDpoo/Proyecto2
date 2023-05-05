@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 import logica.*;
 
-//TODO: MODIFICAR LAS RESERVAS PARA QUE SE GUARDEN
-
 public class Frecep extends JPanel implements ActionListener {
     FPrincipal principal;
     public JLabel titulo;
@@ -96,7 +94,8 @@ public class Frecep extends JPanel implements ActionListener {
         } else if (comando.equals("registrarsalida")) {
             // TODO
         } else if (comando.equals("cancelarreserva")) {
-            // TODO
+            FcancelarReserva ventanaCancelar = new FcancelarReserva(this.hotel);
+            ventanaCancelar.setVisible(true);
         } else if (comando.equals("salir")) {
             principal.setVisible(true);
             this.setVisible(false);

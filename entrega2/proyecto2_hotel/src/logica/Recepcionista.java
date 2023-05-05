@@ -237,9 +237,11 @@ public class Recepcionista extends Empleado {
         return tarifa_cotizacion;
     }
 
-    public HashMap<Integer, reserva> cancelarReserva(Integer numero_reserva, HashMap<Integer, reserva> reservas) {
+    public void cancelarReserva(Integer numero_reserva, HashMap<Integer, reserva> reservas,
+            HashMap<Integer, Grupo> grupos, Hotel hotel) {
         reserva reserva = reservas.get(numero_reserva);
         Grupo grupo = reserva.getGrupo();
+        int idGrupo = grupo.getId();
         ArrayList<Habitacion> habitaciones = grupo.getHabitaciones();
         // ArrayList<Huesped> huespedes = grupo.getHuespedes();
 
@@ -248,8 +250,9 @@ public class Recepcionista extends Empleado {
         }
 
         reservas.remove(numero_reserva);
-        System.out.println("Reserva Acabada!");
-        return reservas;
+        grupos.remove(idGrupo);
+        hotel.setReservas(reservas);
+        hotel.setGrupos(grupos);
     }
 
     public void guardarFactura(Integer numero_reserva, String factura) {
