@@ -34,7 +34,7 @@ public class Recepcionista extends Empleado {
             HashMap<Integer, Habitacion> habitaciones, Empleado empleado, HashMap<String, Integer> tarifasEstandar,
             HashMap<String, Integer> tarifasSuite, HashMap<String, Integer> tarifasSuiteDoble,
             HashMap<Integer, Grupo> grupos, ArrayList<Habitacion> habitacionesRegistradas,
-            ArrayList<Huesped> huespedesRegistrados, String inicial, String f_final) {
+            ArrayList<Huesped> huespedesRegistrados, String inicial, String f_final, Hotel hotel) {
 
         int rangoI = Integer.parseInt(inicial.substring(0, 5).replace(".", ""));
         int rangoF = Integer.parseInt(f_final.substring(0, 5).replace(".", ""));
@@ -46,8 +46,10 @@ public class Recepcionista extends Empleado {
         for (Habitacion habitacion : habitacionesRegistradas) {
             if (habitacion instanceof Estandar) {
                 Estandar estandar = (Estandar) habitacion;
+                estandar.setEstado("OCUPADO");
                 int fecha_ini = Integer.parseInt(f_inicial);
                 int fecha_fin = Integer.parseInt(finalf);
+                habitaciones.replace(habitacion.getNumero(), habitacion, estandar);
 
                 while (fecha_ini != fecha_fin) {
                     if (fecha_ini % 100 == 32) {
@@ -60,7 +62,8 @@ public class Recepcionista extends Empleado {
                 Suite suite = (Suite) habitacion;
                 int fecha_ini = Integer.parseInt(f_inicial);
                 int fecha_fin = Integer.parseInt(finalf);
-
+                suite.setEstado("OCUPADO");
+                habitaciones.replace(habitacion.getNumero(), habitacion, suite);
                 while (fecha_ini != fecha_fin) {
                     if (fecha_ini % 100 == 32) {
                         fecha_ini = (fecha_ini - 31) + 100;
@@ -72,6 +75,8 @@ public class Recepcionista extends Empleado {
                 Suite_doble suite_doble = (Suite_doble) habitacion;
                 int fecha_ini = Integer.parseInt(f_inicial);
                 int fecha_fin = Integer.parseInt(finalf);
+                suite_doble.setEstado("OCUPADO");
+                habitaciones.replace(habitacion.getNumero(), habitacion, suite_doble);
 
                 while (fecha_ini != fecha_fin) {
                     if (fecha_ini % 100 == 32) {
@@ -89,6 +94,7 @@ public class Recepcionista extends Empleado {
             id = random.nextInt(101);
         } while (grupos.containsKey(id));
         Grupo grupo_reserva = new Grupo(huespedesRegistrados, habitacionesRegistradas, id);
+        grupos.put(id, grupo_reserva);
 
         int fecha_registro = Integer.parseInt(f_inicial);
         String fecha_inicio = String.valueOf(fecha_registro);
@@ -96,6 +102,9 @@ public class Recepcionista extends Empleado {
                 fecha_inicio, rango_fecha,
                 empleado);
         reservas.put(numero_reserva, reserva);
+        hotel.setReservas(reservas);
+        hotel.setHabitaciones(habitaciones);
+        hotel.setGrupos(grupos);
         return reservas;
     }
 
