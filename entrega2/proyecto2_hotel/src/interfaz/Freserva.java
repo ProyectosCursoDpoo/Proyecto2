@@ -137,6 +137,9 @@ public class Freserva extends JFrame implements ActionListener {
         if (comando.equals("Volver")) {
             frecep.setVisible(true);
             this.dispose();
+            if (huespedes.size() > 0) {
+                hotel.logOut();
+            }
         } else if (comando.equals("Registrar Huesped")) {
             String nombre = tNombre.getText();
             String identificacion = tIdentificacion.getText();

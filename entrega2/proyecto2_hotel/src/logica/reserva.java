@@ -159,9 +159,7 @@ public class reserva {
     cadena += getGrupo().getId() + ";";
     cadena += getTarifaReserva() + ";";
     cadena += getFechaRealizada() + ";";
-    cadena += getRangoFechaReserva() + ";";
-    cadena += getEmpleado().getUsuario() + "\n";
-
+    cadena += getRangoFechaReserva() + "\n";
     return cadena;
   }
 }

@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 public class FPrincipal extends JFrame {
 
     public Hotel hotel = new Hotel();
@@ -43,14 +44,19 @@ public class FPrincipal extends JFrame {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        // establece el tamaño del marco como las dimensiones de la pantalla
-        setSize(screenSize.width - 50, screenSize.height - 50);
-        // establece la ubicación del marco en la esquina superior izquierda de la
-        // pantalla
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setContentPane(contentP);
-        setVisible(true);
+    addWindowListener(new WindowAdapter() {
+        @Override
+        public void windowClosing(WindowEvent e) {
+                hotel.guardarInformacion();}
+    });
+
+    // establece el tamaño del marco como las dimensiones de la pantalla
+    setSize(screenSize.width-50, screenSize.height-50);
+    // establece la ubicación del marco en la esquina superior izquierda de la pantalla
+    setLocationRelativeTo(null);
+    setResizable(false);
+    setContentPane(contentP);
+    setVisible(true);
 
     }
 

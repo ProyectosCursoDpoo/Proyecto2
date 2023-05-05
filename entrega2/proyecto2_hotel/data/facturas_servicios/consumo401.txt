@@ -1,0 +1,158 @@
+---------------------
+Factura Spa: 
+---------------------
+Reserva numero: 401
+Precio por persona por servicio de spa: 50000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Habitacion
+---------------------
+Platos ordenados:
+     Sandwich - $8000
+     Pollo frito - $12000
+     Bistec - $18000
+---------------------
+Precio total: $38000
+---------------------
+Tipo de pago: Inmediato
+
+
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Hamburguesa - $10000
+     Bistec - $18000
+     Tacos - $15000
+     Tacos - $15000
+---------------------
+Precio total: $58000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Ensalada - $30000
+     Hamburguesa - $10000
+---------------------
+Precio total: $40000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Spa: 
+---------------------
+Reserva numero: 401
+Precio por persona por servicio de spa: 50000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Bistec - $18000
+---------------------
+Precio total: $18000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Pollo frito - $12000
+     Pollo frito - $12000
+     Pollo frito - $12000
+     Pollo frito - $12000
+---------------------
+Precio total: $48000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Hamburguesa - $10000
+---------------------
+Precio total: $10000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Tacos - $15000
+---------------------
+Precio total: $15000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Tacos - $15000
+---------------------
+Precio total: $15000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Hamburguesa - $10000
+     Pollo frito - $12000
+---------------------
+Precio total: $22000
+---------------------
+Tipo de pago: Inmediato
+
+---------------------
+Factura Restaurante: 
+---------------------
+Reserva numero: 401
+Ubicacion: Restaurante
+---------------------
+Platos ordenados:
+     Ensalada - $30000
+     Bistec - $18000
+---------------------
+Precio total: $48000
+---------------------
+Tipo de pago: Inmediato

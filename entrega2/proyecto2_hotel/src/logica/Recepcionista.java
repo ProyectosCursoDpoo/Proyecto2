@@ -34,13 +34,22 @@ public class Recepcionista extends Empleado {
             HashMap<Integer, Habitacion> habitaciones, Empleado empleado, HashMap<String, Integer> tarifasEstandar,
             HashMap<String, Integer> tarifasSuite, HashMap<String, Integer> tarifasSuiteDoble,
             HashMap<Integer, Grupo> grupos, ArrayList<Habitacion> habitacionesRegistradas,
-            ArrayList<Huesped> huespedesRegistrados) {
+            ArrayList<Huesped> huespedesRegistrados, String inicial, String f_final, Hotel hotel) {
 
+        int rangoI = Integer.parseInt(inicial.substring(0, 5).replace(".", ""));
+        int rangoF = Integer.parseInt(f_final.substring(0, 5).replace(".", ""));
+        String rangoIni = String.valueOf(rangoI);
+        String rangoFini = String.valueOf(rangoF);
+        String rango_fecha = rangoIni + "-" + rangoFini;
+        String f_inicial = inicial.substring(0, 5).replace(".", "");
+        String finalf = f_final.substring(0, 5).replace(".", "");
         for (Habitacion habitacion : habitacionesRegistradas) {
             if (habitacion instanceof Estandar) {
                 Estandar estandar = (Estandar) habitacion;
-                int fecha_ini = Integer.parseInt(inicial);
-                int fecha_fin = Integer.parseInt(f_final);
+                estandar.setEstado("OCUPADO");
+                int fecha_ini = Integer.parseInt(f_inicial);
+                int fecha_fin = Integer.parseInt(finalf);
+                habitaciones.replace(habitacion.getNumero(), habitacion, estandar);
 
                 while (fecha_ini != fecha_fin) {
                     if (fecha_ini % 100 == 32) {
@@ -51,9 +60,10 @@ public class Recepcionista extends Empleado {
                 }
             } else if (habitacion instanceof Suite) {
                 Suite suite = (Suite) habitacion;
-                int fecha_ini = Integer.parseInt(inicial);
-                int fecha_fin = Integer.parseInt(f_final);
-
+                int fecha_ini = Integer.parseInt(f_inicial);
+                int fecha_fin = Integer.parseInt(finalf);
+                suite.setEstado("OCUPADO");
+                habitaciones.replace(habitacion.getNumero(), habitacion, suite);
                 while (fecha_ini != fecha_fin) {
                     if (fecha_ini % 100 == 32) {
                         fecha_ini = (fecha_ini - 31) + 100;
@@ -63,8 +73,10 @@ public class Recepcionista extends Empleado {
                 }
             } else if (habitacion instanceof Suite_doble) {
                 Suite_doble suite_doble = (Suite_doble) habitacion;
-                int fecha_ini = Integer.parseInt(inicial);
-                int fecha_fin = Integer.parseInt(f_final);
+                int fecha_ini = Integer.parseInt(f_inicial);
+                int fecha_fin = Integer.parseInt(finalf);
+                suite_doble.setEstado("OCUPADO");
+                habitaciones.replace(habitacion.getNumero(), habitacion, suite_doble);
 
                 while (fecha_ini != fecha_fin) {
                     if (fecha_ini % 100 == 32) {
@@ -82,10 +94,17 @@ public class Recepcionista extends Empleado {
             id = random.nextInt(101);
         } while (grupos.containsKey(id));
         Grupo grupo_reserva = new Grupo(huespedesRegistrados, habitacionesRegistradas, id);
+        grupos.put(id, grupo_reserva);
 
-        reserva reserva = new reserva(numero_reserva, grupo_reserva, tarifaReserva, fechaRealizada, rangoFecha,
+        int fecha_registro = Integer.parseInt(f_inicial);
+        String fecha_inicio = String.valueOf(fecha_registro);
+        reserva reserva = new reserva(numero_reserva, grupo_reserva, tarifaReserva,
+                fecha_inicio, rango_fecha,
                 empleado);
         reservas.put(numero_reserva, reserva);
+        hotel.setReservas(reservas);
+        hotel.setHabitaciones(habitaciones);
+        hotel.setGrupos(grupos);
         return reservas;
     }
 
@@ -218,9 +237,11 @@ public class Recepcionista extends Empleado {
         return tarifa_cotizacion;
     }
 
-    public HashMap<Integer, reserva> cancelarReserva(Integer numero_reserva, HashMap<Integer, reserva> reservas) {
+    public void cancelarReserva(Integer numero_reserva, HashMap<Integer, reserva> reservas,
+            HashMap<Integer, Grupo> grupos, Hotel hotel) {
         reserva reserva = reservas.get(numero_reserva);
         Grupo grupo = reserva.getGrupo();
+        int idGrupo = grupo.getId();
         ArrayList<Habitacion> habitaciones = grupo.getHabitaciones();
         // ArrayList<Huesped> huespedes = grupo.getHuespedes();
 
@@ -229,8 +250,9 @@ public class Recepcionista extends Empleado {
         }
 
         reservas.remove(numero_reserva);
-        System.out.println("Reserva Acabada!");
-        return reservas;
+        grupos.remove(idGrupo);
+        hotel.setReservas(reservas);
+        hotel.setGrupos(grupos);
     }
 
     public void guardarFactura(Integer numero_reserva, String factura) {

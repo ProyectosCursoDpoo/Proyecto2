@@ -1,7 +1,13 @@
 package logica;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.*;
 import java.util.*;
+
+import javax.swing.event.SwingPropertyChangeSupport;
 
 public class Hotel {
 
@@ -66,10 +72,6 @@ public class Hotel {
         return this.huespedes;
     }
 
-    public void setHabitaciones(HashMap<Integer, Habitacion> habitaciones) {
-        this.habitaciones = habitaciones;
-    }
-
     public HashMap<Integer, Habitacion> getHabitaciones() {
         return this.habitaciones;
     }
@@ -88,6 +90,22 @@ public class Hotel {
 
     public HashMap<Integer, reserva> getReservas() {
         return this.reservas;
+    }
+
+    public void setReservas(HashMap<Integer, reserva> reservas) {
+        this.reservas = reservas;
+    }
+
+    public void setHabitaciones(HashMap<Integer, Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
+
+    public void setGrupos(HashMap<Integer, Grupo> grupos) {
+        this.grupos = grupos;
+    }
+
+    public void setHuespedes(HashMap<Integer, Huesped> huespedes) {
+        this.huespedes = huespedes;
     }
 
     public HashMap<String, String> getDatabase() {
@@ -174,10 +192,9 @@ public class Hotel {
             opcion = Integer.parseInt(input("\nSeleccione una opcion"));
             if (opcion == 1) {
                 Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
-                // HashMap<Integer, Consumo> consumos_actualizados =
-                // empleado.registrarServicio(reservas, platos, pago,
-                // consumos);
-                // consumos = consumos_actualizados;
+                //HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,
+                  //      consumos);
+                //consumos = consumos_actualizados;
             } else if (opcion == 2) {
                 // empleado.mostrarFacturaPorReserva(consumos);
             } else if (opcion == 3) {
@@ -187,6 +204,7 @@ public class Hotel {
             }
         } while (opcion != 3);
     }
+
 
     private void mostrarInfoRecep(String usuario, String contrasena) {
         int opcion;
@@ -455,10 +473,10 @@ public class Hotel {
                 int tarifa = Integer.parseInt(partes[2]);
                 String fecha_inicio = partes[3];
                 String rango_fecha = partes[4];
-                String usuario_empleado = partes[5];
+                // String usuario_empleado = partes[5];
                 Grupo grupo = grupos.get(id_grupo);
 
-                String info_empleado = database.get(usuario_empleado);
+                // String info_empleado = database.get(usuario_empleado);
 
                 Recepcionista empleado = new Recepcionista();
 
@@ -476,7 +494,7 @@ public class Hotel {
         String linea;
         try {
             br = new BufferedReader(
-                    new FileReader(new File("../Proyecto2/entrega2/proyecto2_hotel/data/servicios.txt")));
+                    new FileReader(new File("../proyecto1/entrega3/proyecto1_hotel/data/servicios.txt")));
             linea = br.readLine();
             while (linea != null) {
                 String[] partes = linea.split(";");
@@ -484,13 +502,17 @@ public class Hotel {
                 // int tarifa = Integer.parseInt(partes[1]);
                 // String ubicacion = partes[2];
                 // String horario = partes[3];
-                Spa servicio = new Spa();
-                servicios.put(nombre_servicio, servicio);
-                Restaurante servicio_r = new Restaurante();
-                servicios.put(nombre_servicio, servicio_r);
-                GuiaTuristica servicio_tur = new GuiaTuristica();
-                servicios.put(nombre_servicio, servicio_tur);
-
+                Servicios servicio;
+                if (nombre_servicio.equals("Spa")) {
+                    servicio = new Spa();
+                    servicios.put(nombre_servicio, servicio);
+                } else if (nombre_servicio.equals("Restaurante")) {
+                    servicio = new Restaurante();
+                    servicios.put(nombre_servicio, servicio);
+                } else if (nombre_servicio.equals("GuiaTuristica")) {
+                    servicio = new GuiaTuristica();
+                    servicios.put(nombre_servicio, servicio);
+                } 
                 linea = br.readLine();
             }
         } catch (IOException e) {
