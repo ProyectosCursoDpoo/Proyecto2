@@ -11,8 +11,6 @@ import java.io.*;
 
 public class FAdmin extends JPanel implements ActionListener{
     FPrincipal principal;
-    private CardLayout cardLayout;
-    private JPanel cardsPanel;
     Administrador admin;
 
     public FAdmin(FPrincipal fPrincipal){
@@ -27,8 +25,8 @@ public class FAdmin extends JPanel implements ActionListener{
         panel1.setBackground(fondo);
 
         JButton boton1 = new JButton("Cargar Habitaciones");
-        boton1.setBackground(fondo);
-        boton1.setForeground(Color.WHITE);
+        //boton1.setBackground(fondo);
+        boton1.setForeground(fondo);
         boton1.setFont(boton1.getFont().deriveFont(18f));
         boton1.setPreferredSize(new Dimension(50, 10));
         boton1.setHorizontalAlignment(JLabel.CENTER);
@@ -36,8 +34,8 @@ public class FAdmin extends JPanel implements ActionListener{
         boton1.setActionCommand("Cargar Habitaciones");
 
         JButton boton2 = new JButton("Cargar Tarifas");
-        boton2.setBackground(fondo);
-        boton2.setForeground(Color.WHITE);
+        //boton2.setBackground(fondo);
+        boton2.setForeground(fondo);
         boton2.setFont(boton1.getFont().deriveFont(18f));
         boton2.setPreferredSize(new Dimension(50, 10));
         boton2.setHorizontalAlignment(JLabel.CENTER);
@@ -45,8 +43,8 @@ public class FAdmin extends JPanel implements ActionListener{
         boton2.setActionCommand("Cargar Tarifas");
 
         JButton boton3 = new JButton("Cargar Menú");
-        boton3.setBackground(fondo);
-        boton3.setForeground(Color.WHITE);
+        //boton3.setBackground(fondo);
+        boton3.setForeground(fondo);
         boton3.setFont(boton1.getFont().deriveFont(18f));
         boton3.setPreferredSize(new Dimension(50, 10));
         boton3.setHorizontalAlignment(JLabel.CENTER);
@@ -54,8 +52,8 @@ public class FAdmin extends JPanel implements ActionListener{
         boton3.setActionCommand("Cargar Menú");
 
         JButton boton4 = new JButton("Crear Habitación");
-        boton4.setBackground(fondo);
-        boton4.setForeground(Color.WHITE);
+        //boton4.setBackground(fondo);
+        boton4.setForeground(fondo);
         boton4.setFont(boton1.getFont().deriveFont(18f));
         boton4.setPreferredSize(new Dimension(50, 10));
         boton4.setHorizontalAlignment(JLabel.CENTER);
@@ -63,8 +61,8 @@ public class FAdmin extends JPanel implements ActionListener{
         boton4.setActionCommand("Crear Habitación");
 
         JButton boton5 = new JButton("Cambiar Tarifa");
-        boton5.setBackground(fondo);
-        boton5.setForeground(Color.WHITE);
+        //boton5.setBackground(fondo);
+        boton5.setForeground(fondo);
         boton5.setFont(boton1.getFont().deriveFont(18f));
         boton5.setPreferredSize(new Dimension(50, 10));
         boton5.setHorizontalAlignment(JLabel.CENTER);
@@ -72,8 +70,8 @@ public class FAdmin extends JPanel implements ActionListener{
         boton5.setActionCommand("Cambiar Tarifa");
 
         JButton boton6 = new JButton("Configurar Plato");
-        boton6.setBackground(fondo);
-        boton6.setForeground(Color.WHITE);
+        //boton6.setBackground(fondo);
+        boton6.setForeground(fondo);
         boton6.setFont(boton1.getFont().deriveFont(18f));
         boton6.setPreferredSize(new Dimension(50, 10));
         boton6.setHorizontalAlignment(JLabel.CENTER);
@@ -81,7 +79,7 @@ public class FAdmin extends JPanel implements ActionListener{
         boton6.setActionCommand("Configurar Plato");
 
         JPanel grilla = new JPanel(new GridLayout(2, 3, 100, 150));
-        grilla.setBackground(Color.LIGHT_GRAY);
+        grilla.setBackground(fondo);
         grilla.add(boton1);
         grilla.add(boton2);
         grilla.add(boton3);
@@ -163,13 +161,13 @@ public class FAdmin extends JPanel implements ActionListener{
         else if (comando.equals("Cambiar Tarifa")){
             new FCambiarTarifa(this.principal, this.admin);
             
-        }
+        } 
         else if (comando.equals("Configurar Plato")){
             new FCrearPlato(this.principal, this.admin);
             
         }
         else if (comando.equals("Salir")){
-            cardLayout.first(cardsPanel);
+            this.setVisible(false);
             this.principal.hotel.logOut();
         }
     }

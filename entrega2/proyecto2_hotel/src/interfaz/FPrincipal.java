@@ -30,9 +30,9 @@ public class FPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // pRecept = new FRecepcionista(this);
-        // pAdmin = new FAdmin(this);
+        pAdmin = new FAdmin(this);
         pRecept = new Frecep(this.hotel, this);
-        pAdmin = new JPanel();
+        //pAdmin = new JPanel();
         pStaff = new FStaff(this);
 
         cardLayout = new CardLayout();
