@@ -3,14 +3,9 @@ package interfaz;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.plaf.synth.SynthSplitPaneUI;
-
-import java.io.*;
 
 public class FStaff extends JPanel implements ActionListener {
     FPrincipal principal;
-    private CardLayout cardLayout;
-    private JPanel cardsPanel;
 
     public FStaff(FPrincipal fPrincipal) {
         // super(new GridLayout(2,1));

@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-import javax.swing.plaf.synth.SynthSplitPaneUI;
-
 import java.time.LocalDateTime;
 
 public class Staff extends Empleado {
