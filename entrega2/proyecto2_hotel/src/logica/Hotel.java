@@ -192,9 +192,10 @@ public class Hotel {
             opcion = Integer.parseInt(input("\nSeleccione una opcion"));
             if (opcion == 1) {
                 Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
-                //HashMap<Integer, Consumo> consumos_actualizados = empleado.registrarServicio(reservas, platos, pago,
-                  //      consumos);
-                //consumos = consumos_actualizados;
+                // HashMap<Integer, Consumo> consumos_actualizados =
+                // empleado.registrarServicio(reservas, platos, pago,
+                // consumos);
+                // consumos = consumos_actualizados;
             } else if (opcion == 2) {
                 // empleado.mostrarFacturaPorReserva(consumos);
             } else if (opcion == 3) {
@@ -205,11 +206,10 @@ public class Hotel {
         } while (opcion != 3);
     }
 
-
     private void mostrarInfoRecep(String usuario, String contrasena) {
         int opcion;
-        String nombre = usuario.substring(6);
-        Recepcionista empleado = new Recepcionista(usuario, contrasena, nombre);
+        // String nombre = usuario.substring(6);
+        // Recepcionista empleado = new Recepcionista(usuario, contrasena, nombre);
         do {
             System.out.println("Opciones Recepcionista");
             System.out.println("1.) Dar Cotización ");
@@ -220,23 +220,30 @@ public class Hotel {
             System.out.println("5.) Cerrar Sesión ");
             opcion = Integer.parseInt(input("\nSeleccione una opcion"));
             if (opcion == 1) {
-                empleado.darCotizacion(huespedes, habitaciones, tarifasEstandar, tarifasSuite, tarifasSuite2);
+                // empleado.darCotizacion(huespedes, habitaciones, tarifasEstandar,
+                // tarifasSuite, tarifasSuite2);
             } else if (opcion == 2) {
-                HashMap<Integer, reserva> reservas_actualizadas = empleado.iniciarReserva(huespedes, reservas,
-                        habitaciones, empleado, tarifasEstandar, tarifasSuite, tarifasSuite2, grupos);
-                reservas = reservas_actualizadas;
+                // HashMap<Integer, reserva> reservas_actualizadas =
+                // empleado.iniciarReserva(huespedes, reservas,
+                // habitaciones, empleado, tarifasEstandar, tarifasSuite, tarifasSuite2,
+                // grupos);
+                // reservas = reservas_actualizadas;
             } else if (opcion == 3) {
-                int numero_reserva = Integer.parseInt(input("Ingresa el numero de la reserva que deseas cancelar: "));
-                empleado.cancelarReserva(numero_reserva, reservas);
+                // int numero_reserva = Integer.parseInt(input("Ingresa el numero de la reserva
+                // que deseas cancelar: "));
+                // empleado.cancelarReserva(numero_reserva, reservas);
             } else if (opcion == 4) {
-                int numero_reserva = Integer
-                        .parseInt(input("Ingresa el numero de tu reserva para registrar tu salida: "));
-                HashMap<Integer, reserva> reservas_cambiadas = empleado.registrarSalida(numero_reserva, reservas,
-                        consumos);
-                HashMap<Integer, Consumo> consumos_cambiados = empleado.borrarConsumos(numero_reserva, reservas,
-                        consumos);
-                reservas = reservas_cambiadas;
-                consumos = consumos_cambiados;
+                // int numero_reserva = Integer
+                // .parseInt(input("Ingresa el numero de tu reserva para registrar tu salida:
+                // "));
+                // HashMap<Integer, reserva> reservas_cambiadas =
+                // empleado.registrarSalida(numero_reserva, reservas,
+                // consumos);
+                // HashMap<Integer, Consumo> consumos_cambiados =
+                // empleado.borrarConsumos(numero_reserva, reservas,
+                // consumos);
+                // reservas = reservas_cambiadas;
+                // consumos = consumos_cambiados;
                 // } else if (opcion == 5) {
                 // int numero_reserva = Integer
                 // .parseInt(input("Ingresa el numero de tu reserva para generar tu factura:"));
@@ -512,7 +519,7 @@ public class Hotel {
                 } else if (nombre_servicio.equals("GuiaTuristica")) {
                     servicio = new GuiaTuristica();
                     servicios.put(nombre_servicio, servicio);
-                } 
+                }
                 linea = br.readLine();
             }
         } catch (IOException e) {

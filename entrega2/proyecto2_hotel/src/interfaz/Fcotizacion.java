@@ -130,7 +130,8 @@ public class Fcotizacion extends JFrame implements ActionListener {
                         tarifasSuite2, recepcionista);
             }
         } else if (comando.equals("ocupacion")) {
-            recepcionista = new Recepcionista();
+            FOcupacion ventanaFOcupacion = new FOcupacion();
+            ventanaFOcupacion.setVisible(true);
         } else if (comando.equals("volver")) {
             frecep.setVisible(true);
             this.dispose();
