@@ -161,12 +161,13 @@ public class FAdmin extends JPanel implements ActionListener{
         else if (comando.equals("Cambiar Tarifa")){
             new FCambiarTarifa(this.principal, this.admin);
             
-        }
+        } 
         else if (comando.equals("Configurar Plato")){
             new FCrearPlato(this.principal, this.admin);
             
         }
         else if (comando.equals("Salir")){
+            this.setVisible(false);
             this.principal.hotel.logOut();
         }
     }
