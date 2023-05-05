@@ -92,7 +92,8 @@ public class Frecep extends JPanel implements ActionListener {
             Freserva ventanaReserva = new Freserva(this, this.hotel, huespedes);
             ventanaReserva.setVisible(true);
         } else if (comando.equals("registrarsalida")) {
-            // TODO
+            FverificarId ventFverificarId = new FverificarId(this.hotel);
+            ventFverificarId.setVisible(true);
         } else if (comando.equals("cancelarreserva")) {
             FcancelarReserva ventanaCancelar = new FcancelarReserva(this.hotel);
             ventanaCancelar.setVisible(true);

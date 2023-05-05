@@ -258,7 +258,8 @@ public class Recepcionista extends Empleado {
     public void guardarFactura(Integer numero_reserva, String factura) {
         try (
                 BufferedWriter bw = new BufferedWriter(new FileWriter(new File(
-                        "../proyecto2_hotel/data/facturas/reserva" + String.valueOf(numero_reserva) + ".txt")))) {
+                        "../PROYECTO2/entrega2/proyecto2_hotel/data/facturas/reserva" + String.valueOf(numero_reserva)
+                                + ".txt")))) {
 
             bw.write(factura);
             bw.close();
@@ -268,42 +269,30 @@ public class Recepcionista extends Empleado {
         }
     }
 
-    public HashMap<Integer, Consumo> borrarConsumos(Integer numero_reserva, HashMap<Integer, reserva> reservas,
-            HashMap<Integer, Consumo> consumos) {
+    public String registrarSalida(Integer numero_reserva, HashMap<Integer, reserva> reservas, Staff staff,
+            HashMap<Integer, Consumo> consumos, HashMap<Integer, Habitacion> habitaciones, Hotel hotel) {
 
-        if (reservas.containsKey(numero_reserva)) {
-            System.out.println(reservas);
-            reserva reserva = reservas.get(numero_reserva);
-            ArrayList<Consumo> consumos_reserva = reserva.getConsumos();
-
-            for (Consumo consumo : consumos_reserva) {
-                int id = consumo.getId();
-                consumos.remove(id);
-                System.out.println("Coincide");
-            }
+        String factura = generarFactura(numero_reserva, reservas, staff, consumos);
+        Grupo grupo = reservas.get(numero_reserva).getGrupo();
+        ArrayList<Habitacion> habitaciones_usadas = grupo.getHabitaciones();
+        for (Habitacion habitacionN : habitaciones_usadas) {
+            habitacionN.setEstado("DISPONIBLE");
+            habitaciones.put(numero_reserva, habitacionN);
         }
-        return consumos;
-    }
 
-    public HashMap<Integer, reserva> registrarSalida(Integer numero_reserva, HashMap<Integer, reserva> reservas,
-            HashMap<Integer, Consumo> consumos) {
-        System.out.println(
-                "A continuacion te mostrate tu factura para que hagas el respectivo pago y poder registrar tu factura: ");
-        // reserva reserva = reservas.get(numero_reserva);
-        String factura = generarFactura(numero_reserva, reservas, consumos);
-        System.out.println("--------Factura--------");
-        System.out.println(factura);
-        System.out.println("-----------------------");
+        // TODO : Hacer que no se borre el id del grupo y verificar que el precio sea
+        // correcto
 
-        // int saldo = Integer.parseInt(input("Ingresa el saldo correspondiente a tarifa
-        // final: "));
-        System.out.println("Gracias por visitar nuestro hotel!!!");
+        reservas.remove(numero_reserva);
+        hotel.setHabitaciones(habitaciones);
+        hotel.setReservas(reservas);
         guardarFactura(numero_reserva, factura);
-        return cancelarReserva(numero_reserva, reservas);
+
+        return factura;
 
     }
 
-    public String generarFactura(Integer numero_reserva, HashMap<Integer, reserva> reservas,
+    public String generarFactura(Integer numero_reserva, HashMap<Integer, reserva> reservas, Staff staff,
             HashMap<Integer, Consumo> consumos) {
         // HashMap<Integer, Consumo> consumos
         reserva reserva = reservas.get(numero_reserva);
@@ -311,9 +300,10 @@ public class Recepcionista extends Empleado {
         String factura = "";
         Grupo grupo = reserva.getGrupo();
         ArrayList<Habitacion> habitaciones_usadas = grupo.getHabitaciones();
-        ArrayList<Huesped> huespedes_registrados = grupo.getHuespedes();
+        // ArrayList<Huesped> huespedes_registrados = grupo.getHuespedes();
         double saldo_pendiente = reserva.getSaldoPendiente();
         total += saldo_pendiente;
+        String info_consumo = staff.mostrarFacturaPorReserva(consumos, numero_reserva);
 
         factura += "Servicios utilizados: \n \t---Las habitaciones que utilizaste en tu reserva son:--- \n";
         for (Habitacion habitacion : habitaciones_usadas) {
@@ -355,31 +345,21 @@ public class Recepcionista extends Empleado {
                 factura += ("\n");
             }
         }
-        factura += "\t ---Los huespedes hospedados fueron:--- \n";
-        for (Huesped huesped : huespedes_registrados) {
-            factura += String.format("Nombre del huesped: %s \n", huesped.getNombre());
-            factura += String.format("Correo del huesped: %s \n", huesped.getCorreo());
-            factura += String.format("Celular del huesped: %s \n", huesped.getCelular());
-            factura += String.format("Identificacion del huesped: %s \n", huesped.getIdentificacion());
-            factura += "\n";
+        // factura += "\t ---Los huespedes hospedados fueron:--- \n";
+        // for (Huesped huesped : huespedes_registrados) {
+        // factura += String.format("Nombre del huesped: %s \n", huesped.getNombre());
+        // factura += String.format("Correo del huesped: %s \n", huesped.getCorreo());
+        // factura += String.format("Celular del huesped: %s \n", huesped.getCelular());
+        // factura += String.format("Identificacion del huesped: %s \n",
+        // huesped.getIdentificacion());
+        // factura += "\n";
 
-        }
+        // }
         factura += "\t ---Los consumos adicionales son:--- \n";
-        for (Object k : consumos.keySet()) {
-            Consumo consumo = consumos.get(k);
-            if (consumo.getReserva().getNumeroReserva() == reserva.getNumeroReserva()) {
-                factura += String.format("Nombre del servicio adicional que contrato: %s \n", consumo.getNombre());
-                factura += String.format("Precio del servicio adicional que contrato: %d \n", consumo.getPrecioIndv());
-                factura += "\n";
-                if (!consumo.estado) {
-                    total += consumo.getPrecioIndv();
-                }
-            }
-        }
+        factura += info_consumo;
 
         factura += String.format("El precio total de la factura es: %.1f pesos colombianos \n", total);
         factura += "Gracias por reservar con nostros! \n";
-        System.out.println(factura);
         return factura;
 
     }

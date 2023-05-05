@@ -7,17 +7,20 @@ import java.util.HashMap;
 import logica.*;
 import javax.swing.*;
 
-public class FcancelarReserva extends JFrame implements ActionListener {
+public class FverificarId extends JFrame implements ActionListener {
     JTextField tId;
     JButton bCancelar;
     JButton bVolver;
     Recepcionista recepcionista;
+    Staff staff;
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     Color fondo = new Color(28, 35, 46);
     private Hotel hotel;
+    JTextArea areaTexto;
+    JPanel miPanel;
 
-    public FcancelarReserva(Hotel hotel) {
-        super("Cancelar Reserva");
+    public FverificarId(Hotel hotel) {
+        super("Verificar Id");
         this.hotel = hotel;
         inicializar();
     }
@@ -47,12 +50,12 @@ public class FcancelarReserva extends JFrame implements ActionListener {
         JPanel botones = new JPanel(new GridLayout(1, 2, 10, 10));
         botones.setBackground(fondo);
 
-        this.bCancelar = new JButton("Cancelar la reserva");
+        this.bCancelar = new JButton("Generar Factura");
         bCancelar.setFont(new Font("Georgia", Font.BOLD, 40));
         bCancelar.setBackground(fondo);
         bCancelar.setForeground(Color.white);
         bCancelar.addActionListener(this);
-        bCancelar.setActionCommand("cancelar");
+        bCancelar.setActionCommand("generar");
 
         this.bVolver = new JButton("Volver");
         bVolver.setFont(new Font("Georgia", Font.BOLD, 40));
@@ -72,29 +75,29 @@ public class FcancelarReserva extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
-        if (comando.equals("cancelar")) {
+        if (comando.equals("generar")) {
             String id = tId.getText();
             HashMap<Integer, reserva> reservas = hotel.getReservas();
-            recepcionista = new Recepcionista();
             // revisar que el Id si sea un numero y que exista en las reservas
             if (id.matches("[0-9]+") && reservas.containsKey(Integer.parseInt(id)) && !id.equals("")) {
-                HashMap<Integer, Grupo> grupos = hotel.getGrupos();
-                recepcionista.cancelarReserva(Integer.parseInt(id), reservas, grupos, this.hotel);
-                JOptionPane.showMessageDialog(null, "Reserva cancelada exitosamente", "Reserva cancelada",
-                        JOptionPane.INFORMATION_MESSAGE);
-                dispose();
-                hotel.logOut();
+                // recepcionista = new Recepcionista();
+                // staff = new Staff();
+                // HashMap<Integer, Consumo> consumos = hotel.getConsumos();
+                // String info = recepcionista.registrarSalida(Integer.parseInt(id), reservas,
+                // staff, consumos);
+
+                // JOptionPane.showConfirmDialog(this, info, "Factura",
+                // JOptionPane.INFORMATION_MESSAGE);
+
+                FfacturaReserva vFfacturaReserva = new FfacturaReserva(hotel, Integer.parseInt(id));
+                vFfacturaReserva.setVisible(true);
+
             } else {
                 JOptionPane.showMessageDialog(null, "Id invalido", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         } else if (comando.equals("volver")) {
             dispose();
-            String id = tId.getText();
-            if (!id.equals("")) {
-                hotel.logOut();
-            }
         }
     }
-
 }
