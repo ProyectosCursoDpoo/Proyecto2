@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.*;
 
 import logica.Consumo;
-import logica.Hotel;
 import logica.Staff;
 
 public class FServicio extends JFrame implements ActionListener {
@@ -168,7 +167,6 @@ public class FServicio extends JFrame implements ActionListener {
         }
 
         public void actionPerformed(ActionEvent e){
-            Staff staff = new Staff();
             String comando = e.getActionCommand();
             if (nPlato == 0 & comando.equals("agregar")){
                 JOptionPane.showMessageDialog(null, "Debe seleccionar un plato del menú", "Error", JOptionPane.ERROR_MESSAGE);
@@ -177,7 +175,7 @@ public class FServicio extends JFrame implements ActionListener {
                 nPlato = 0;
                 textField.setText("");
             } else if (comando.equals("terminar")){
-                if (numReservaField.equals("") || numReservaField.getText().equals("")){
+                if (numReservaField.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Debe ingresar el número de reserva", "Error", JOptionPane.ERROR_MESSAGE);
                 } else if (listaPedido.isEmpty()){
                     JOptionPane.showMessageDialog(null, "Debe agregar al menos un plato al pedido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -372,8 +370,5 @@ public class FServicio extends JFrame implements ActionListener {
         }
     }
 
-    private void panelSpa(JPanel pS, FStaff fStaff) {
-
-    }
 
 }

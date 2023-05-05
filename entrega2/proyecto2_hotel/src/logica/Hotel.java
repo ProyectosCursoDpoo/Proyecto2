@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.*;
 import java.util.*;
 
-import javax.swing.event.SwingPropertyChangeSupport;
 
 public class Hotel {
 
@@ -183,7 +182,6 @@ public class Hotel {
 
     private void mostrarInfoStaff(String usuario, String contrasena) {
         int opcion;
-        Staff empleado = new Staff();
         do {
             System.out.println("Opciones Staff");
             System.out.println("1.) Registrar Servicio ");
@@ -191,7 +189,6 @@ public class Hotel {
             System.out.println("3.) Cerrar Sesión ");
             opcion = Integer.parseInt(input("\nSeleccione una opcion"));
             if (opcion == 1) {
-                Boolean pago = Boolean.parseBoolean(input("Desea realizar pago inmediato del servicio? (True/False)"));
                 // HashMap<Integer, Consumo> consumos_actualizados =
                 // empleado.registrarServicio(reservas, platos, pago,
                 // consumos);

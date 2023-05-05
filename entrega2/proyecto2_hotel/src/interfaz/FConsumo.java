@@ -6,9 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
-import logica.Consumo;
-import logica.Empleado;
 import logica.Staff;
 
 
