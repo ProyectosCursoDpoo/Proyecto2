@@ -281,10 +281,11 @@ public class Staff extends Empleado {
             while (linea != null) {
                 info += linea;
                 info += "\n";
-                info += "-----------------------------------------------------\n";
 
                 linea = br.readLine();
             }
+                            info += "-----------------------------------------------------\n";
+
         } catch (IOException e) {
         }
 

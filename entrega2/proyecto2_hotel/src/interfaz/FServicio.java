@@ -285,17 +285,10 @@ public class FServicio extends JFrame implements ActionListener {
             pagoLabel.setFont(new Font("Georgia", Font.BOLD, 20));
             pagoBox = new JComboBox<>(new String[] { "Inmediato", "Al final de la estadía" });
 
-            JLabel cantGuiaLabel = new JLabel("Cantidad de personas que tomarán el servicio:");
-            cantGuiaLabel.setForeground(Color.white);
-            cantGuiaLabel.setFont(new Font("Georgia", Font.BOLD, 20));
-            cantGuiaField = new JTextField(10);
-
             panel.add(numReservaLabel);
             panel.add(numReservaField);
             panel.add(pagoLabel);
             panel.add(pagoBox);
-            panel.add(cantGuiaLabel);
-            panel.add(cantGuiaField);
 
             add(panel, BorderLayout.CENTER);
 
