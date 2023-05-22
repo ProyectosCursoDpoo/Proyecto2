@@ -86,7 +86,8 @@ public class FfacturaReserva extends JFrame implements ActionListener {
         HashMap<Integer, reserva> reservas = hotel.getReservas();
         HashMap<Integer, Consumo> consumos = hotel.getConsumos();
         HashMap<Integer, Habitacion> habitaciones = hotel.getHabitaciones();
-        String info = recepcionista.registrarSalida(id, reservas, staff, consumos, habitaciones, this.hotel);
+        HashMap<Integer, Grupo> grupos = hotel.getGrupos();
+        String info = recepcionista.registrarSalida(id, reservas, staff, consumos, habitaciones, this.hotel, grupos);
 
         scrollPane = new JScrollPane();
         scrollPane.setBounds(10, 11, 414, 400);

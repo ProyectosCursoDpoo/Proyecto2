@@ -270,7 +270,8 @@ public class Recepcionista extends Empleado {
     }
 
     public String registrarSalida(Integer numero_reserva, HashMap<Integer, reserva> reservas, Staff staff,
-            HashMap<Integer, Consumo> consumos, HashMap<Integer, Habitacion> habitaciones, Hotel hotel) {
+            HashMap<Integer, Consumo> consumos, HashMap<Integer, Habitacion> habitaciones, Hotel hotel,
+            HashMap<Integer, Grupo> grupos) {
 
         String factura = generarFactura(numero_reserva, reservas, staff, consumos);
         Grupo grupo = reservas.get(numero_reserva).getGrupo();
@@ -280,10 +281,12 @@ public class Recepcionista extends Empleado {
             habitaciones.put(numero_reserva, habitacionN);
         }
 
-        // TODO : Hacer que no se borre el id del grupo y verificar que el precio sea
-        // correcto
+        int idGrupo = grupo.getId();
 
+        grupos.remove(idGrupo);
         reservas.remove(numero_reserva);
+
+        hotel.setGrupos(grupos);
         hotel.setHabitaciones(habitaciones);
         hotel.setReservas(reservas);
         guardarFactura(numero_reserva, factura);
