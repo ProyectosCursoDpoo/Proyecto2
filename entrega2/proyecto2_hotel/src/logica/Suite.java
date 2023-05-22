@@ -13,8 +13,23 @@ public class Suite extends Habitacion {
     private String estado;
     private HashMap<String, Integer> precio = new HashMap<String, Integer>();
 
+    private int m2;
+    private boolean aireAcondicionado;
+    private boolean calefaccion;
+    private boolean tv;
+    private boolean cafetera;
+    private boolean ropaCama;
+    private boolean plancha;
+    private boolean secador;
+    private int voltaje;
+    private boolean usba;
+    private boolean usbc;
+    private boolean desayuno;
+
     public Suite(int numero, String ubicacion, int capacidad, boolean vista, boolean balcon, boolean cocina,
-            ArrayList<Cama> camas, HashMap<String, Integer> precio, String estado) {
+            ArrayList<Cama> camas, HashMap<String, Integer> precio, String estado, int m2, boolean aireAcondicionado, 
+            boolean calefaccion, boolean tv, boolean cafetera, boolean ropaCama, boolean plancha, boolean secador, 
+            int voltaje, boolean usba, boolean usbc, boolean desayuno) {
         this.numero = numero;
         this.ubicacion = ubicacion;
         this.capacidad = capacidad;
@@ -24,7 +39,21 @@ public class Suite extends Habitacion {
         this.camas = camas;
         this.estado = estado;
         this.precio = precio;
-    }
+
+        this.m2 = m2;
+        this.aireAcondicionado = aireAcondicionado;
+        this.calefaccion = calefaccion;
+        this.tv = tv;
+        this.cafetera = cafetera;
+        this.ropaCama = ropaCama;
+        this.plancha = plancha;
+        this.secador = secador;
+        this.voltaje = voltaje;
+        this.usba = usba;
+        this.usbc = usbc;
+        this.desayuno = desayuno;
+  }
+    
 
     /**
      * @return int return the numero
@@ -185,8 +214,140 @@ public class Suite extends Habitacion {
         cadena += isVista() + ";";
         cadena += isBalcon() + ";";
         cadena += isCocina() + ";";
-        cadena += getEstado() + "\n";
+        cadena += getEstado() + ";";
+        cadena += getM2() + ";";
+        cadena += isAireAcondicionado() + ";";
+        cadena+= isCalefaccion()+ ";";
+        cadena+= isTv()+ ";";
+        cadena+= isCafetera()+ ";";
+        cadena+= isRopaCama()+ ";";
+        cadena+= isPlancha()+ ";";
+        cadena+= isSecador()+ ";";
+        cadena+= getVoltaje()+ ";";
+        cadena+= isUsba()+ ";";
+        cadena+= isUsbc()+ ";";
+        cadena+= isDesayuno()+ "\n";
         return cadena;
+    }
+
+
+    public int getM2() {
+        return m2;
+    }
+
+
+    public void setM2(int m2) {
+        this.m2 = m2;
+    }
+
+
+    public boolean isAireAcondicionado() {
+        return aireAcondicionado;
+    }
+
+
+    public void setAireAcondicionado(boolean aireAcondicionado) {
+        this.aireAcondicionado = aireAcondicionado;
+    }
+
+
+    public boolean isCalefaccion() {
+        return calefaccion;
+    }
+
+
+    public void setCalefaccion(boolean calefaccion) {
+        this.calefaccion = calefaccion;
+    }
+
+
+    public boolean isTv() {
+        return tv;
+    }
+
+
+    public void setTv(boolean tv) {
+        this.tv = tv;
+    }
+
+
+    public boolean isCafetera() {
+        return cafetera;
+    }
+
+
+    public void setCafetera(boolean cafetera) {
+        this.cafetera = cafetera;
+    }
+
+
+    public boolean isRopaCama() {
+        return ropaCama;
+    }
+
+
+    public void setRopaCama(boolean ropaCama) {
+        this.ropaCama = ropaCama;
+    }
+
+
+    public boolean isPlancha() {
+        return plancha;
+    }
+
+
+    public void setPlancha(boolean plancha) {
+        this.plancha = plancha;
+    }
+
+
+    public boolean isSecador() {
+        return secador;
+    }
+
+
+    public void setSecador(boolean secador) {
+        this.secador = secador;
+    }
+
+
+    public int getVoltaje() {
+        return voltaje;
+    }
+
+
+    public void setVoltaje(int voltaje) {
+        this.voltaje = voltaje;
+    }
+
+
+    public boolean isUsba() {
+        return usba;
+    }
+
+
+    public void setUsba(boolean usba) {
+        this.usba = usba;
+    }
+
+
+    public boolean isUsbc() {
+        return usbc;
+    }
+
+
+    public void setUsbc(boolean usbc) {
+        this.usbc = usbc;
+    }
+
+
+    public boolean isDesayuno() {
+        return desayuno;
+    }
+
+
+    public void setDesayuno(boolean desayuno) {
+        this.desayuno = desayuno;
     }
 
 }

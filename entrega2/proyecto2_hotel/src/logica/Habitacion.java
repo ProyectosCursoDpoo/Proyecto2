@@ -11,6 +11,20 @@ public abstract class Habitacion {
     private boolean cocina;
     private ArrayList<Cama> camas = new ArrayList<Cama>();
     private String estado;
+    
+    private int m2;
+    private boolean aireAcondicionado;
+    private boolean calefaccion;
+    private boolean tv;
+    private boolean cafetera;
+    private boolean ropaCama;
+    private boolean plancha;
+    private boolean secador;
+    private int voltaje;
+    private boolean usba;
+    private boolean usbc;
+    private boolean desayuno;
+
     private HashMap<String, Integer> precio = new HashMap<String, Integer>();
 
     /**
