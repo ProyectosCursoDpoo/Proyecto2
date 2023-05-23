@@ -362,33 +362,18 @@ public class Hotel {
                 boolean cocina = Boolean.valueOf(partes[7]);
                 String estado = partes[8];
 
-                int m2= Integer.valueOf(partes[9]);
-                boolean aireAcondicionado= Boolean.valueOf(partes[10]);
-                boolean calefaccion= Boolean.valueOf(partes[11]);
-                boolean tv= Boolean.valueOf(partes[12]);
-                boolean cafetera= Boolean.valueOf(partes[13]);
-                boolean ropaCama= Boolean.valueOf(partes[14]);
-                boolean plancha= Boolean.valueOf(partes[15]);
-                boolean secador= Boolean.valueOf(partes[16]);
-                int voltaje= Integer.valueOf(partes[17]);
-                boolean usba= Boolean.valueOf(partes[18]);
-                boolean usbc= Boolean.valueOf(partes[19]);
-                boolean desayuno= Boolean.valueOf(partes[20]);
-
-
-
                 Habitacion habi_nueva;
 
                 if (habitaciones.get(numero) == null) {
                     if (tipo == 1) {
                         habi_nueva = new Estandar(numero, ubicacion, capacidad, vista, balcon, cocina, camas_habitacion,
-                                tarifasEstandar, estado, m2,aireAcondicionado,calefaccion,tv,cafetera,ropaCama,plancha,secador,voltaje,usba,usbc,desayuno );
+                                tarifasEstandar, estado);
                     } else if (tipo == 2) {
                         habi_nueva = new Suite(numero, ubicacion, capacidad, vista, balcon, cocina, camas_habitacion,
-                                tarifasSuite, estado, m2,aireAcondicionado,calefaccion,tv,cafetera,ropaCama,plancha,secador,voltaje,usba,usbc,desayuno);
+                                tarifasSuite, estado);
                     } else {
                         habi_nueva = new Suite_doble(numero, ubicacion, capacidad, vista, balcon, cocina,
-                                camas_habitacion, tarifasSuite2, estado, m2,aireAcondicionado,calefaccion,tv,cafetera,ropaCama,plancha,secador,voltaje,usba,usbc,desayuno);
+                                camas_habitacion, tarifasSuite2, estado);
                     }
                     habitaciones.put(numero, habi_nueva);
                 } else {
